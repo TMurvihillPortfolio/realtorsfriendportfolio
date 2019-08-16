@@ -1,7 +1,8 @@
 const styles = {
     root: {
         //background: '#fcfcfc'
-        color: 'whitesmoke'
+        color: 'whitesmoke',
+        margin: '25px'
     },
     select: {color: 'whitesmoke'}
 };

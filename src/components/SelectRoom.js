@@ -4,19 +4,17 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import styles from '../styles/SelectRoomStyles';
 
-function SelectRoom(props) {
-    const { classes } = props;
+function SelectRoom({ changeRoom, classes }) {
+    //const { classes } = props;
     const [values, setValues] = React.useState({
         room: 'default',
         name: 'hai',
     });
     function handleChange(e) {
         console.log(e.target.value);
+        changeRoom(e.target.value);
     }
     return (
-        <form className={classes.root} autoComplete="off">
-        {/* <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="age-simple" style={{color:'whitesmoke'}}>Select Room</InputLabel> */}
           <Select
             value={values.room}
             onChange={handleChange}
@@ -32,8 +30,7 @@ function SelectRoom(props) {
             <MenuItem value={'living'}>Living Room</MenuItem>
             <MenuItem value={'master'}>Master Bedroom</MenuItem>
           </Select>
-        {/* </FormControl> */}
-        </form>
+        
     )
 }
 
