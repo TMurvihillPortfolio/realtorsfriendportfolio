@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import styles from '../styles/ManageHomeStyles.js';
+//#region home images
 import homeImage from '../img/hometwocarflat.jpg';
 import livingImage from '../img/livingroom.jpg';
 import kitchenImage from '../img/kitchen.jpg';
 import masterImage from '../img/masterbedroom.jpg';
+//#endregion
 import SelectRoom from '../components/SelectRoom';
 import RoomComments from '../components/RoomComments';
 import Improvements from '../components/Improvements';
@@ -14,6 +16,10 @@ function ManageHome(props) {
     const { classes } = props;
     const [ room, setRoom ] = useState('living');
     const [ roomImage, setRoomImage ] = useState(livingImage);
+    const [ realtorComments, setRealtorComments ] = useState('');
+    const [ buyerComments, setBuyerComments ] = useState('');
+    const [ sellerComments, setSellerComments ] = useState('');
+    
     const fullRoomName = {
         living: 'Living Room',
         kitchen: 'Kitchen',
@@ -24,6 +30,14 @@ function ManageHome(props) {
         if (newRoom==='living') setRoomImage(livingImage);
         if (newRoom==='kitchen') setRoomImage(kitchenImage);
         if (newRoom==='master') setRoomImage(masterImage);
+    }
+    function updateComments(commenter, comment) {
+        console.log('inupdatecommnet');
+        console.log(commenter);
+        console.log(comment);
+        if (commenter === 'realtorComments') setRealtorComments(comment);
+        if (commenter === 'buyerComments') setBuyerComments(comment);
+        if (commenter === 'sellerComments') setSellerComments(comment);
     }
     return (
         <div className={classes.root}>
@@ -42,10 +56,16 @@ function ManageHome(props) {
             </div>
             <Typography variant='h4' color='secondary'>{fullRoomName[room].toUpperCase()}</Typography>
             <SelectRoom changeRoom={changeRoom}/>
-            <RoomComments />
-            <Improvements room={fullRoomName[room]} />
+            <RoomComments 
+                realtorComments={realtorComments}
+                buyerComments={buyerComments}
+                sellerComments={sellerComments}
+                updateComments={updateComments}
+            />
+            <Improvements 
+                room={fullRoomName[room]} 
+            />
         </div>       
     )
 }
-
 export default withStyles(styles)(ManageHome);
