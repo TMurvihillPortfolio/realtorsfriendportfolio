@@ -1,11 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ManageHome from './components/ManageHome';
 
 function App() {
   return (
-    <div className="App">
-      
+    <div>
+      <ManageHome />
     </div>
   );
 }
