@@ -8,9 +8,10 @@ import livingImage from '../img/livingroom.jpg';
 import kitchenImage from '../img/kitchen.jpg';
 import masterImage from '../img/masterbedroom.jpg';
 //#endregion
-import SelectRoom from '../components/SelectRoom';
-import RoomComments from '../components/RoomComments';
-import Improvements from '../components/Improvements';
+import SelectRoom from './SelectRoom';
+import RoomComments from './RoomComments';
+import Improvements from './Improvements';
+import NavBar from './NavBar';
 
 function ManageHome(props) {
     const { classes } = props;
@@ -41,6 +42,7 @@ function ManageHome(props) {
     }
     return (
         <div className={classes.root}>
+            <NavBar />
             <div>
                 <Typography variant='h3' color='secondary' gutterBottom>Manage Home</Typography>
             </div>

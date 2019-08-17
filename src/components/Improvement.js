@@ -8,35 +8,49 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+import ImprovementEdit from './ImprovementEdit';
 
 function Improvement(props) {
     const { row, updateImprovement } = props;
-    const [ cellId, setCellId ] = useState('')
     const [ isEditting, setIsEditting ] = useState(false);
-    function handleChange(e) {
-        console.log(e);
-        setCellId(e.target.id);
-        updateImprovement(row.id, e.target.value);
-    }
+    
     return (
         <TableRow key={uuid()}>
-            <TableCell key={uuid()} padding="checkbox">
-                <Checkbox
-                    // indeterminate={numSelected > 0 && numSelected < rowCount}
-                    checked={row.completed}
-                    // onChange={onSelectAllClick}
-                    inputProps={{ 'aria-label': 'select all desserts' }}
-                />
-            </TableCell>
-              <TableCell key={uuid()} component="th" scope="row">
-                <input type='text' value={row.improvement} onChange={handleChange}/>
-              </TableCell>
-              <TableCell key={uuid()} align="right">{row.cost}</TableCell>
-              <TableCell key={uuid()} align="right">{row.estPriceAdj}</TableCell>
-              <TableCell key={uuid()} align="right">{row.estTimeToSell}</TableCell>
-              <TableCell key={uuid()} align="right">{row.notes}</TableCell>
-            </TableRow>
-        
+            {isEditting?
+                <ImprovementEdit row={row} updateImprovement={updateImprovement}/>
+            :
+                <>
+                <TableCell key={uuid()} padding="checkbox">
+                    <Checkbox
+                        // indeterminate={numSelected > 0 && numSelected < rowCount}
+                        checked={row.completed}
+                        onChange={ () => setIsEditting(true)}
+                        inputProps={{ 'aria-label': 'select all desserts' }}
+                    />
+                </TableCell>
+                <TableCell key={uuid()} component="th" scope="row">
+                    {row.improvement}
+                </TableCell>
+                <TableCell key={uuid()} align="right">{row.cost}</TableCell>
+                <TableCell key={uuid()} align="right">{row.estPriceAdj}</TableCell>
+                <TableCell key={uuid()} align="right">{row.estTimeToSell}</TableCell>
+                <TableCell key={uuid()} align="right">{row.notes}</TableCell>
+                <TableCell padding="checkbox">
+                    <IconButton aria-label="Delete" onClick={()=>alert('deleteClicked')}>
+                        <DeleteIcon/>
+                    </IconButton>
+                </TableCell>
+                <TableCell padding="checkbox">
+                    <IconButton aria-label="Edit" onClick={()=>setIsEditting(true)}>
+                        <EditIcon/>
+                    </IconButton>
+                </TableCell>
+                </>
+            }
+        </TableRow>       
     )
 }
 

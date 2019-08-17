@@ -44,7 +44,7 @@ function Improvements({ classes, room }) {
       <Table className={classes.improvement}>
         <TableHead>
           <TableRow>  
-            <TableCell>Completed</TableCell>
+            <TableCell></TableCell>
             <TableCell>Improvement</TableCell>
             <TableCell align="right">Cost to Seller</TableCell>
             <TableCell align="right">Est. Price Adj</TableCell>
