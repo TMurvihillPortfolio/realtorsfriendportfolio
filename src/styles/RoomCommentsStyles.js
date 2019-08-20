@@ -5,6 +5,7 @@ const styles = {
     },
     comments: {
         width: '100%',
+        color: '#D0C9DD',
         "&>label, &>input": {
             display: 'block'
         },

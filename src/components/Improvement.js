@@ -16,11 +16,20 @@ import ImprovementEdit from './ImprovementEdit';
 function Improvement(props) {
     const { row, updateImprovement } = props;
     const [ isEditting, setIsEditting ] = useState(false);
-    
+    const [ editCellFocus, setEditCellFocus ] = useState('improvement');
+    function updateCellFocus(newCellFocus) {
+        setEditCellFocus(newCellFocus);
+    }
     return (
         <TableRow key={uuid()}>
             {isEditting?
-                <ImprovementEdit row={row} updateImprovement={updateImprovement}/>
+                <ImprovementEdit 
+                    row={row} 
+                    updateImprovement={updateImprovement} 
+                    updateIsEditting={setIsEditting} 
+                    editCellFocus={editCellFocus}
+                    updateCellFocus={updateCellFocus}
+                />
             :
                 <>
                 <TableCell key={uuid()} padding="checkbox">

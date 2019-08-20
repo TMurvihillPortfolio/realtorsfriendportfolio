@@ -17,15 +17,15 @@ function RoomComments(props) {
     return (
         <div className={classes.root}>
             <div className={classes.comments}>
-                <label htmlFor='realtorComments'><Typography color='primary'>Realtor Comments</Typography></label>
+                <label htmlFor='realtorComments'><Typography>Realtor Comments</Typography></label>
                 <textarea rows='7' id='realtorComments' onChange={handleUpdateComments} value={realtorComments} placeholder={(realtorComments==='')?'comments':undefined}/>
             </div>
             <div className={classes.comments}>
-                <label htmlFor='buyerComments'><Typography color='primary'>Buyer Comments</Typography></label>
+                <label htmlFor='buyerComments'><Typography>Buyer Comments</Typography></label>
                 <textarea rows='7' id='buyerComments' onChange={handleUpdateComments} value={buyerComments} placeholder={(buyerComments==='')?'comments':undefined}/>
             </div>
             <div className={classes.comments}>
-                <label htmlFor='sellerComments'><Typography color='primary'>Seller Comments</Typography></label>
+                <label htmlFor='sellerComments'><Typography>Seller Comments</Typography></label>
                 <textarea rows='7' id='sellerComments' onChange={handleUpdateComments} value={sellerComments} placeholder={(sellerComments==='')?'comments':undefined}/>
             </div>    
         </div>

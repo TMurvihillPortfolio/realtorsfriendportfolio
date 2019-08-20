@@ -6,22 +6,22 @@ const styles = {
         minHeight: '100vh',
         minWidth: '100vw',
         textAlign: 'center',
-        backgroundColor: '#333',
+        backgroundColor: '#241F4D',
         paddingBottom: '25px'
     },
     pageHeading: {
-        backgroundColor: 'lightsalmon',
-        width: 'fit-content',
-        margin: 'auto',
+        marginTop: '50px',
+        textAlign: 'center',
         marginBottom: '15px',
-        padding: '7px 10px',
-        borderRadius: '7px'
-
+        color: '#FCFCFD',
+        ["& h4"]: {
+            color: '#D0C9DD'
+        }
     },
     imageGallery: {
         display: 'flex',
         width: '100%',
-        height: '200px',
+        height: '350px',
         margin: '50px 15px',
         "&>figure": {
             width: '48%',
@@ -38,10 +38,11 @@ const styles = {
 
     },
     roomImage: {
-        
     },
     caption: {
-        
+        color: '#D0C9DD'
+    },
+    select: {
     }
 }
 export default styles;

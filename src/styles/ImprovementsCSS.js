@@ -6,6 +6,9 @@ const styles = theme => ({
         overflowX: 'auto',
         paddingTop: '25px',
     },
+    heading: {
+        color: '#A21576'
+    },
     table: {
     minWidth: 650,
     }

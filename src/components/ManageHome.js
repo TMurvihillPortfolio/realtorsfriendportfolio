@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, createMuiTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import styles from '../styles/ManageHomeStyles.js';
 //#region home images
@@ -33,9 +33,6 @@ function ManageHome(props) {
         if (newRoom==='master') setRoomImage(masterImage);
     }
     function updateComments(commenter, comment) {
-        console.log('inupdatecommnet');
-        console.log(commenter);
-        console.log(comment);
         if (commenter === 'realtorComments') setRealtorComments(comment);
         if (commenter === 'buyerComments') setBuyerComments(comment);
         if (commenter === 'sellerComments') setSellerComments(comment);
@@ -43,21 +40,22 @@ function ManageHome(props) {
     return (
         <div className={classes.root}>
             <NavBar />
-            <div>
-                <Typography variant='h3' color='secondary' gutterBottom>Manage Home</Typography>
+            <div className={classes.pageHeading}>
+                <Typography variant='h3' gutterBottom>Realtor's Friend</Typography>
+                <Typography variant='h4' gutterBottom>Recommedations for Home</Typography>
             </div>
             <div className={classes.imageGallery}>
                 <figure>
                     <img src={homeImage} className={classes.homeImage} alt='front of house two car garage flat roof'/>
-                    <figcaption><Typography color='secondary'>1005 BLUE COAST WAY NE</Typography></figcaption>
+                    <figcaption><Typography className={classes.caption}>1005 BLUE COAST WAY NE</Typography></figcaption>
                 </figure>
                 <figure>
                     <img src={roomImage} className={classes.roomImage} alt={room}/>
-                    <figcaption><Typography color='secondary'>{fullRoomName[room].toUpperCase()}</Typography></figcaption>
+                    <figcaption><Typography className={classes.caption}>{fullRoomName[room].toUpperCase()}</Typography></figcaption>
                 </figure>                
             </div>
-            <Typography variant='h4' color='secondary'>{fullRoomName[room].toUpperCase()}</Typography>
-            <SelectRoom changeRoom={changeRoom}/>
+            <Typography variant='h4' className={classes.pageHeading}>{fullRoomName[room].toUpperCase()}</Typography>
+            <SelectRoom className={classes.select} changeRoom={changeRoom}/>
             <RoomComments 
                 realtorComments={realtorComments}
                 buyerComments={buyerComments}
@@ -67,7 +65,7 @@ function ManageHome(props) {
             <Improvements 
                 room={fullRoomName[room]} 
             />
-        </div>       
+        </div>      
     )
 }
 export default withStyles(styles)(ManageHome);

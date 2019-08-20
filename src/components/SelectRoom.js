@@ -23,6 +23,7 @@ function SelectRoom({ changeRoom, classes }) {
               id: 'age-simple',
             }}
             className={classes.root}
+            style={{color:'#D0C9DD', '& icon': {color:'white !important'}}}
             autoWidth
           >
             <MenuItem value={'default'} selected>Select Room</MenuItem>

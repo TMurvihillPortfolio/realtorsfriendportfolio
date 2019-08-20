@@ -31,7 +31,7 @@ function Improvements({ classes, room }) {
     function updateImprovement(id, newValue) {
         const newRows = rows.map(row => {
             if (row.id === id ) {
-                return { ...row, improvement: newValue }
+                return newValue;
             } else {
                 return row;
             }           
@@ -40,7 +40,7 @@ function Improvements({ classes, room }) {
     }
   return (
     <Paper className={classes.root}>
-    <Typography color='primary' variant='h4'>Improvements for {room}</Typography>           
+    <Typography className={classes.heading} variant='h4'>Improvements for {room}</Typography>           
       <Table className={classes.improvement}>
         <TableHead>
           <TableRow>  
