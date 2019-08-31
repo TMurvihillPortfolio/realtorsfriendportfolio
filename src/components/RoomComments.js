@@ -4,15 +4,12 @@ import styles from '../styles/RoomCommentsStyles'
 
 function RoomComments(props) {
     const { classes, realtorComments, buyerComments, sellerComments, updateComments } = props
-    console.log(props);
     function handleUpdateComments(e) {
-        console.log('iminhandle');
-        console.log(e.target.id);
-        let commenter = '';
+       let commenter = '';
         // if (e.target.id='realtorComments') commenter = 'realtor';
         // if (e.target.id='buyerComments') commenter = 'buyer';
         // if (e.target.id='sellerComments') commenter = 'seller';
-        updateComments(e.target.id, e.target.value);
+        updateComments(e.target.id, props.room, e.target.value);
     }
     return (
         <div className={classes.root}>

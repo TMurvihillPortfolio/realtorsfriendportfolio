@@ -68,19 +68,19 @@ class Footer extends Component {
                 <div className={classes.line1}>
                     <img src={logo} alt='logo' className={classes.logo}/>
                     <div className={classes.menuContainer}>             
-                        <a href="#" class="footer__menuContainer--menu-item">Home</a>
-                        <a href="#" class="footer__menuContainer--menu-item">About</a>
-                        <a href="https://take2tech.ca/contact" class="footer__menuContainer--menu-item">Contact</a> 
+                        <a href="#">Home</a>
+                        <a href="#">About</a>
+                        <a href="https://take2tech.ca/contact">Contact</a> 
                     </div>
                     
                 </div>
                 <div className={classes.social}>
-                    <a href="https://www.linkedin.com/in/tisha-murvihill-tech" target="_blank" class="footer__menuContainer--social-item">
+                    <a href="https://www.linkedin.com/in/tisha-murvihill-tech" target="_blank">
                         {/* <img src="img/linkedin.jpg" class="footer__menuContainer--social-item-img"/> */}
 
                     </a>
                     {/* <i class="ion-social-linkedin footer__menuContainer--social-item-icon"></i> */}
-                    <p>Website by: <a href="mailto:tech@take2tech.ca" class="footer__menuContainer--social-item footer__menuContainer--social-item-web" target="_blank">tech@take2tech.ca</a></p>
+                    <p>Website by: <a href="mailto:tech@take2tech.ca" target="_blank">tech@take2tech.ca</a></p>
                 </div>
                 <div class={classes.copyRight}>
                     <p>&copy; 2019 by take2tech.ca. All rights reserved. ver 8.08-m</p>

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { withStyles, createMuiTheme } from '@material-ui/core/styles';
+import React, { useState, useEffect } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import styles from '../styles/ManageHomeStyles.js';
 //#region home images
@@ -14,13 +14,28 @@ import Improvements from './Improvements';
 import NavBar from './NavBar';
 import Footer from './Footer';
 
+const initialComments = {   
+                realtorComments: {
+                    living:'',
+                    kitchen:'',
+                    master:''
+                },
+                buyerComments:{
+                    living:'',
+                    kitchen:'',
+                    master:''
+                },
+                sellerComments:{
+                    living:'',
+                    kitchen:'',
+                    master:''
+                },
+            };
 function ManageHome(props) {
     const { classes } = props;
     const [ room, setRoom ] = useState('living');
     const [ roomImage, setRoomImage ] = useState(livingImage);
-    const [ realtorComments, setRealtorComments ] = useState('');
-    const [ buyerComments, setBuyerComments ] = useState('');
-    const [ sellerComments, setSellerComments ] = useState('');
+    const [ comments, setComments ] = useState(initialComments);
     
     const fullRoomName = {
         living: 'Living Room',
@@ -33,11 +48,20 @@ function ManageHome(props) {
         if (newRoom==='kitchen') setRoomImage(kitchenImage);
         if (newRoom==='master') setRoomImage(masterImage);
     }
-    function updateComments(commenter, comment) {
-        if (commenter === 'realtorComments') setRealtorComments(comment);
-        if (commenter === 'buyerComments') setBuyerComments(comment);
-        if (commenter === 'sellerComments') setSellerComments(comment);
+    function updateComments(commenter, room, comment) {
+        //     setExampleState({...exampleState,  masterField2: {
+        //         fieldOne: "c",
+        //         fieldTwo: {
+        //            fieldTwoOne: "d",
+        //            fieldTwoTwo: "e"
+        //            }
+        //         },
+        //    }})
+        const commenterObj = {...comments[commenter], [room]: comment};
+        setComments({...comments, [commenter]: commenterObj});
     }
+    //used for debugging state
+    //useEffect(() => console.log(comments));
     return (
         <div className={classes.root}>
             <NavBar />
@@ -58,9 +82,10 @@ function ManageHome(props) {
             <Typography variant='h4' className={classes.pageHeading}>{fullRoomName[room].toUpperCase()}</Typography>
             <SelectRoom className={classes.select} changeRoom={changeRoom}/>
             <RoomComments 
-                realtorComments={realtorComments}
-                buyerComments={buyerComments}
-                sellerComments={sellerComments}
+                room={room}
+                realtorComments={comments.realtorComments[room]}
+                buyerComments={comments.buyerComments[room]}
+                sellerComments={comments.sellerComments[room]}
                 updateComments={updateComments}
             />
             <Improvements 
