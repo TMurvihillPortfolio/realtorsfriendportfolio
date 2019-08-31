@@ -12,6 +12,7 @@ import SelectRoom from './SelectRoom';
 import RoomComments from './RoomComments';
 import Improvements from './Improvements';
 import NavBar from './NavBar';
+import Footer from './Footer';
 
 function ManageHome(props) {
     const { classes } = props;
@@ -65,7 +66,8 @@ function ManageHome(props) {
             <Improvements 
                 room={fullRoomName[room]} 
             />
-        </div>      
-    )
+            <Footer /> 
+        </div>        
+    );
 }
 export default withStyles(styles)(ManageHome);
