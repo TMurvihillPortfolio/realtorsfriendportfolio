@@ -9,5 +9,21 @@ const _MEDIA_QUERIES = {
         return `@media (max-width: ${sizes[size]})`
     }
 }
-
-export { _MEDIA_QUERIES };
+const _INITIAL_COMMENTS = {   
+    realtorComments: {
+        living:'Realtor comments for Living Room',
+        kitchen:'',
+        master:''
+    },
+    buyerComments:{
+        living:'',
+        kitchen:'Buyer comments for kitchen',
+        master:''
+    },
+    sellerComments:{
+        living:'',
+        kitchen:'',
+        master:'Seller comments for master'
+    },
+};
+export { _MEDIA_QUERIES, _INITIAL_COMMENTS };

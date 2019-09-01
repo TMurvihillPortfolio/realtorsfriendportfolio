@@ -1,8 +1,10 @@
 const styles = {
     root: {
-        //background: '#fcfcfc'
-        color: 'whitesmoke',
-        margin: '25px'
+        color: 'rgb(208, 201, 221)',
+        margin: '25px',
+        '& svg': {
+            color: 'rgb(208, 201, 221)'
+        }
     },
     select: {color: 'whitesmoke'}
 };

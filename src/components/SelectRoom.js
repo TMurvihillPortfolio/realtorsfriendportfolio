@@ -11,7 +11,6 @@ function SelectRoom({ changeRoom, classes }) {
         name: 'hai',
     });
     function handleChange(e) {
-        console.log(e.target.value);
         changeRoom(e.target.value);
     }
     return (
@@ -23,8 +22,8 @@ function SelectRoom({ changeRoom, classes }) {
               id: 'age-simple',
             }}
             className={classes.root}
-            style={{color:'#D0C9DD', '& icon': {color:'white !important'}}}
             autoWidth
+            disableUnderline
           >
             <MenuItem value={'default'} selected>Select Room</MenuItem>
             <MenuItem value={'kitchen'}>Kitchen</MenuItem>

@@ -13,29 +13,14 @@ import RoomComments from './RoomComments';
 import Improvements from './Improvements';
 import NavBar from './NavBar';
 import Footer from './Footer';
+import { _INITIAL_COMMENTS } from '../assets/constants';
 
-const initialComments = {   
-                realtorComments: {
-                    living:'',
-                    kitchen:'',
-                    master:''
-                },
-                buyerComments:{
-                    living:'',
-                    kitchen:'',
-                    master:''
-                },
-                sellerComments:{
-                    living:'',
-                    kitchen:'',
-                    master:''
-                },
-            };
+
 function ManageHome(props) {
     const { classes } = props;
     const [ room, setRoom ] = useState('living');
     const [ roomImage, setRoomImage ] = useState(livingImage);
-    const [ comments, setComments ] = useState(initialComments);
+    const [ comments, setComments ] = useState(_INITIAL_COMMENTS);
     
     const fullRoomName = {
         living: 'Living Room',
