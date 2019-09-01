@@ -13,6 +13,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
 //#endregion
 import Improvement from './Improvement';
+import { _INITIAL_IMPROVEMENTS } from '../assets/constants';
 
 function createData(completed, improvement, cost, estPriceAdj, estTimeToSell, notes, id) {
   return { completed, improvement, cost, estPriceAdj, estTimeToSell, notes, id };
@@ -27,16 +28,29 @@ const rowsArray = [
 ];
 
 function Improvements({ classes, room }) {
-    const [ rows, setRows ] = useState(rowsArray);
+    //const [ rows, setRows ] = useState(rowsArray);
+    const [ improvements, setImprovements ] = useState(_INITIAL_IMPROVEMENTS);
+    const roomObject = improvements[room];
+    console.log('room');
+    console.log(room);
+    console.log('roomobj');
+    console.log(roomObject);
+    const keysArray = Object.keys(improvements[room]);
+    let improvementName;
+    const rows = keysArray.map(key => {
+      improvementName = key;
+      return {...improvements.living[key]};
+    });
+    
     function updateImprovement(id, newValue) {
-        const newRows = rows.map(row => {
-            if (row.id === id ) {
+        const newRoomImprovements = roomObject.map(improvement => {
+            if (improvement.id === id ) {
                 return newValue;
             } else {
-                return row;
+                return improvement;
             }           
         });
-        setRows(newRows);
+        setImprovements({...improvements, [room]:newRoomImprovements});
     }
   return (
     <Paper className={classes.root}>
@@ -53,8 +67,13 @@ function Improvements({ classes, room }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-              <Improvement row={row} updateImprovement={updateImprovement}/>          
+          {/* <Improvement row={row} improvementName={improvementName} updateImprovement={updateImprovement}/>  */}
+          {roomObject.map(row => (
+              <Improvement 
+                key={uuid()}
+                row={row} 
+                updateImprovement={updateImprovement}
+              />          
           ))}
         </TableBody>
       </Table>

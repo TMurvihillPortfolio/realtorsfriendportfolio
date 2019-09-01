@@ -74,7 +74,7 @@ function ManageHome(props) {
                 updateComments={updateComments}
             />
             <Improvements 
-                room={fullRoomName[room]} 
+                room={room} 
             />
             <Footer /> 
         </div>        

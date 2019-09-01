@@ -82,7 +82,7 @@ class Footer extends Component {
                     {/* <i class="ion-social-linkedin footer__menuContainer--social-item-icon"></i> */}
                     <p>Website by: <a href="mailto:tech@take2tech.ca" target="_blank">tech@take2tech.ca</a></p>
                 </div>
-                <div class={classes.copyRight}>
+                <div className={classes.copyRight}>
                     <p>&copy; 2019 by take2tech.ca. All rights reserved. ver 8.08-m</p>
                 </div>
             </div>

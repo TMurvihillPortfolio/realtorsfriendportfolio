@@ -20,6 +20,7 @@ function Improvement(props) {
     function updateCellFocus(newCellFocus) {
         setEditCellFocus(newCellFocus);
     }
+    console.log(props.row);
     return (
         <TableRow key={uuid()}>
             {isEditting?
@@ -34,7 +35,6 @@ function Improvement(props) {
                 <>
                 <TableCell key={uuid()} padding="checkbox">
                     <Checkbox
-                        // indeterminate={numSelected > 0 && numSelected < rowCount}
                         checked={row.completed}
                         onChange={ () => setIsEditting(true)}
                         inputProps={{ 'aria-label': 'select all desserts' }}
