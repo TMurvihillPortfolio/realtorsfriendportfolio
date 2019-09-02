@@ -1,6 +1,8 @@
 import React from "react";
+import uuid from "uuid";
 import namor from "namor";
 import "../index.css";
+import { _INITIAL_IMPROVEMENTS } from "../assets/constants";
 
 const range = len => {
   const arr = [];
@@ -10,29 +12,58 @@ const range = len => {
   return arr;
 };
 
-const newPerson = () => {
-  const statusChance = Math.random();
+const newImprovement = (improvement) => {
   return {
-    firstName: namor.generate({ words: 1, numbers: 0 }),
-    lastName: namor.generate({ words: 1, numbers: 0 }),
-    age: Math.floor(Math.random() * 30),
-    visits: Math.floor(Math.random() * 100),
-    progress: Math.floor(Math.random() * 100),
-    status:
-      statusChance > 0.66
-        ? "relationship"
-        : statusChance > 0.33 ? "complicated" : "single"
+      completed: improvement.completed,
+      improvement: improvement.improvement,
+      cost: improvement.cost,
+      estPriceAdj: improvement.estPriceAdj,
+      estTimeToSell: improvement.estTimeToSell,
+      notes: improvement.notes,
+      id: uuid() 
+  
+  // return {
+  //     completed: true,
+  //     improvement: 'thisis',
+  //     notes: 'me',
+  //     age: 22,
+  //     visits: 5,
+  //     progress: 65,
+  //     status:
+  //       statusChance > 0.66
+  //         ? "relationship"
+  //         : statusChance > 0.33 ? "complicated" : "single"
+  //     };
+  // return {
+  //   firstName: namor.generate({ words: 1, numbers: 0 }),
+  //   lastName: namor.generate({ words: 1, numbers: 0 }),
+  //   age: Math.floor(Math.random() * 30),
+  //   visits: Math.floor(Math.random() * 100),
+  //   progress: Math.floor(Math.random() * 100),
+  //   status:
+  //     statusChance > 0.66
+  //       ? "relationship"
+  //       : statusChance > 0.33 ? "complicated" : "single"
+  // };
   };
 };
 
-export function makeData(len = 5553) {
-  return range(len).map(d => {
+export function makeData() {
+  return _INITIAL_IMPROVEMENTS.living.map(improvement => {
     return {
-      ...newPerson(),
-      children: range(10).map(newPerson)
+      ...newImprovement(improvement),
+      children: range(10).map(newImprovement)
     };
   });
 }
+// export function makeData(len = 10) {
+//   return range(len).map(d => {
+//     return {
+//       ...newPerson(),
+//       children: range(10).map(newPerson)
+//     };
+//   });
+// }
 
 export const Logo = () =>
   <div style={{ margin: '1rem auto', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>

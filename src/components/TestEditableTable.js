@@ -1,5 +1,7 @@
+/*********
+ * original working TestEditableTable.js
+ *********/
 import React from "react";
-import { render } from "react-dom";
 import { makeData, Logo, Tips } from "../utils/Utils";
 
 // Import React Table
@@ -15,6 +17,8 @@ class TestEditableTable extends React.Component {
     this.renderEditable = this.renderEditable.bind(this);
   }
   renderEditable(cellInfo) {
+      console.log(cellInfo);
+      console.log(this.state.data);
     return (
       <div
         style={{ backgroundColor: "#fafafa" }}
@@ -33,30 +37,41 @@ class TestEditableTable extends React.Component {
   }
   render() {
     const { data } = this.state;
+    console.log(data);
     return (
       <div>
         <ReactTable
           data={data}
           columns={[
             {
-              Header: "First Name",
-              accessor: "firstName",
+              Header: "Completed",
+              accessor: "completed",
               Cell: this.renderEditable
             },
             {
-              Header: "Last Name",
-              accessor: "lastName",
+              Header: "Improvement",
+              accessor: "improvement",
               Cell: this.renderEditable
             },
             {
-              Header: "Full Name",
-              id: "full",
-              accessor: d =>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: d.firstName + " " + d.lastName
-                  }}
-                />
+              Header: "Cost",
+              accessor: "cost",
+              Cell: this.renderEditable
+            },
+            {
+              Header: "Price Adj",
+              accessor: "estPriceAdj",
+              Cell: this.renderEditable
+            },
+            {
+              Header: "Time to Sell",
+              accessor: "estTimeToSell",
+              Cell: this.renderEditable
+            },
+            {
+              Header: "Notes",
+              accessor: "notes",
+              Cell: this.renderEditable
             }
           ]}
           defaultPageSize={10}

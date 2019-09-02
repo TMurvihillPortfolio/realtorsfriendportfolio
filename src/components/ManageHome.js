@@ -14,7 +14,8 @@ import Improvements from './Improvements';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import TestEditableTable from './TestEditableTable';
-import { _INITIAL_COMMENTS } from '../assets/constants';
+import { _INITIAL_COMMENTS, _INITIAL_IMPROVEMENTS } from '../assets/constants';
+
 
 
 function ManageHome(props) {
@@ -22,6 +23,7 @@ function ManageHome(props) {
     const [ room, setRoom ] = useState('living');
     const [ roomImage, setRoomImage ] = useState(livingImage);
     const [ comments, setComments ] = useState(_INITIAL_COMMENTS);
+    const [ improvements, setImprovements ] = useState(_INITIAL_IMPROVEMENTS);
     
     const fullRoomName = {
         living: 'Living Room',
@@ -77,7 +79,7 @@ function ManageHome(props) {
             {/* <Improvements 
                 room={room} 
             /> */}
-            <div style={{backgroundColor: 'wheat'}}><TestEditableTable /></div>
+            <div style={{backgroundColor: 'wheat'}}><TestEditableTable improvements={improvements}/></div>
             
             <Footer /> 
         </div>        
