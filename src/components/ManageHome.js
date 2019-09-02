@@ -13,6 +13,7 @@ import RoomComments from './RoomComments';
 import Improvements from './Improvements';
 import NavBar from './NavBar';
 import Footer from './Footer';
+import TestEditableTable from './TestEditableTable';
 import { _INITIAL_COMMENTS } from '../assets/constants';
 
 
@@ -73,9 +74,11 @@ function ManageHome(props) {
                 sellerComments={comments.sellerComments[room]}
                 updateComments={updateComments}
             />
-            <Improvements 
+            {/* <Improvements 
                 room={room} 
-            />
+            /> */}
+            <div style={{backgroundColor: 'wheat'}}><TestEditableTable /></div>
+            
             <Footer /> 
         </div>        
     );
