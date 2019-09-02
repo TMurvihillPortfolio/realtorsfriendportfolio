@@ -48,8 +48,9 @@ const newImprovement = (improvement) => {
   };
 };
 
-export function makeData() {
-  return _INITIAL_IMPROVEMENTS.living.map(improvement => {
+export function makeData(room) {
+  console.log('room', room);
+  return _INITIAL_IMPROVEMENTS[room].map(improvement => {
     return {
       ...newImprovement(improvement),
       children: range(10).map(newImprovement)

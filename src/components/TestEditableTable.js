@@ -9,16 +9,23 @@ import ReactTable from "react-table";
 import "react-table/react-table.css";
 
 class TestEditableTable extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      data: makeData()
+      data: makeData(this.props.room)
     };
     this.renderEditable = this.renderEditable.bind(this);
   }
+  componentDidMount() {
+    console.log('didmount');
+    this.setState({ data : makeData(this.props.room) });
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.room != this.props.room;
+  }
   renderEditable(cellInfo) {
-      console.log(cellInfo);
-      console.log(this.state.data);
+      // console.log(cellInfo);
+      // console.log(this.state.data);
     return (
       <div
         style={{ backgroundColor: "#fafafa" }}
@@ -36,8 +43,12 @@ class TestEditableTable extends React.Component {
     );
   }
   render() {
+    
+    
+    this.setState({ data : makeData(this.props.room) });
     const { data } = this.state;
     console.log(data);
+    console.log(this.props);
     return (
       <div>
         <ReactTable

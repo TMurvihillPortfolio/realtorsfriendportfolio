@@ -79,7 +79,13 @@ function ManageHome(props) {
             {/* <Improvements 
                 room={room} 
             /> */}
-            <div style={{backgroundColor: 'wheat'}}><TestEditableTable improvements={improvements}/></div>
+            <div style={{backgroundColor: 'wheat'}}>
+
+                {room==='kitchen' && <TestEditableTable room={'kitchen'}/>}
+                {room==='living' && <TestEditableTable room={'living'}/>}
+                {room==='master' && <TestEditableTable room={'master'}/>}
+
+            </div>
             
             <Footer /> 
         </div>        
