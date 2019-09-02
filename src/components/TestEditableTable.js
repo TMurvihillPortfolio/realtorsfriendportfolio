@@ -24,17 +24,17 @@ class TestEditableTable extends React.Component {
     return nextProps.room != this.props.room;
   }
   renderEditable(cellInfo) {
-      // console.log(cellInfo);
-      // console.log(this.state.data);
     return (
       <div
         style={{ backgroundColor: "#fafafa" }}
         contentEditable
         suppressContentEditableWarning
         onBlur={e => {
+          //const itemId = data[cellInfo.index][cellInfo];
           const data = [...this.state.data];
           data[cellInfo.index][cellInfo.column.id] = e.target.innerHTML;
           this.setState({ data });
+          this.props.updateImprovements(cellInfo.original.itemId, cellInfo.column.id, e.target.innerHTML);
         }}
         dangerouslySetInnerHTML={{
           __html: this.state.data[cellInfo.index][cellInfo.column.id]
@@ -42,13 +42,9 @@ class TestEditableTable extends React.Component {
       />
     );
   }
-  render() {
-    
-    
-    this.setState({ data : makeData(this.props.room) });
+  render() {   
     const { data } = this.state;
-    console.log(data);
-    console.log(this.props);
+    
     return (
       <div>
         <ReactTable
@@ -82,6 +78,11 @@ class TestEditableTable extends React.Component {
             {
               Header: "Notes",
               accessor: "notes",
+              Cell: this.renderEditable
+            },
+            {
+              Header: "Item Id",
+              accessor: "itemId",
               Cell: this.renderEditable
             }
           ]}

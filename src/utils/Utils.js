@@ -20,7 +20,7 @@ const newImprovement = (improvement) => {
       estPriceAdj: improvement.estPriceAdj,
       estTimeToSell: improvement.estTimeToSell,
       notes: improvement.notes,
-      id: uuid() 
+      itemId: improvement.id 
   
   // return {
   //     completed: true,

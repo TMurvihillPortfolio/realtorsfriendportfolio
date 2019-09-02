@@ -37,19 +37,26 @@ function ManageHome(props) {
         if (newRoom==='master') setRoomImage(masterImage);
     }
     function updateComments(commenter, room, comment) {
-        //     setExampleState({...exampleState,  masterField2: {
-        //         fieldOne: "c",
-        //         fieldTwo: {
-        //            fieldTwoOne: "d",
-        //            fieldTwoTwo: "e"
-        //            }
-        //         },
-        //    }})
+        //create new commenter object
         const commenterObj = {...comments[commenter], [room]: comment};
+        //replace commenter object in state
         setComments({...comments, [commenter]: commenterObj});
     }
+    function updateImprovements(improvementId, attribute, text) {
+        //copy state
+        let improvementsCopy = {...improvements};
+        //find improvement to be updated
+        let newImprovementObj = improvementsCopy[room].find(improvement => improvement.id === improvementId);
+        //replace improvement attribute value with new value
+        newImprovementObj = {...newImprovementObj, [attribute]: text };
+        //replace improvement in array of room improvements with updated improvement object
+        const replaceIndex = improvementsCopy[room].findIndex(improvement => improvement.id === improvementId);
+        improvementsCopy[room].splice(replaceIndex, 1, newImprovementObj);
+        //update array of room improvements in state
+        setImprovements({...improvements, [room]: improvementsCopy[room]});
+    }
     //used for debugging state
-    //useEffect(() => console.log(comments));
+    useEffect(() => console.log(improvements));
     return (
         <div className={classes.root}>
             <NavBar />
@@ -76,15 +83,10 @@ function ManageHome(props) {
                 sellerComments={comments.sellerComments[room]}
                 updateComments={updateComments}
             />
-            {/* <Improvements 
-                room={room} 
-            /> */}
-            <div style={{backgroundColor: 'wheat'}}>
-
-                {room==='kitchen' && <TestEditableTable room={'kitchen'}/>}
-                {room==='living' && <TestEditableTable room={'living'}/>}
-                {room==='master' && <TestEditableTable room={'master'}/>}
-
+            <div style={{backgroundColor: 'wheat'}}> {/* NOT YET IMPLEMENTED workaround -- for some reason updating the room state prop does not rerender the table. A new table must be created, hence the if statements. */}
+                {room==='kitchen' && <TestEditableTable room={room} updateImprovements={updateImprovements}/>}
+                {room==='living' && <TestEditableTable room={room} updateImprovements={updateImprovements}/>}
+                {room==='master' && <TestEditableTable room={room} updateImprovements={updateImprovements}/>}
             </div>
             
             <Footer /> 
