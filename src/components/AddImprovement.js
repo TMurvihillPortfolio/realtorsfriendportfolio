@@ -1,46 +1,16 @@
 import React from 'react';
 import uuid from 'uuid';
 
-import { makeStyles } from '@material-ui/core/styles';
+
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
-
-const useStyles = makeStyles(theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    color: 'whitesmoke',
-    backgroundColor: 'wheat',
-    marginBottom: '30px',
-    paddingBottom: '30px'
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    color: 'whitesmoke',
-    '& input': {
-        color: 'whitesmoke'
-    },
-    '& *': {
-        color: 'whitesmoke'
-    }
-  },
-  buttonControl: {
-      display: 'flex',
-      margin: 'auto',
-      justifyContent: 'center',
-      '& > :first-child': {
-          marginRight: '20px'
-      }
-  }
-}));
+import { useStyles } from '../styles/AddImprovementsStyles';
 
 export default function ComposedTextField(props) {
   const [labelWidth, setLabelWidth] = React.useState(0);
-  //const [completed, setCompleted] = React.useState(false);
   const [improvement, setImprovement] = React.useState('');
   const [cost, setCost] = React.useState('');
   const [estPriceAdj, setEstPriceAdj] = React.useState('');
@@ -57,7 +27,7 @@ export default function ComposedTextField(props) {
     if (e.target.id !== undefined) {
         switch(e.target.id) {
             case 'completed':
-                //setCompleted(e.target.checked);
+                //not necessary to keep track of in state
                 break;
             case 'improvement':
                 setImprovement(e.target.value);
@@ -88,10 +58,11 @@ export default function ComposedTextField(props) {
    setNotes('');
   }
   function submitImprovement(e) {
-    console.log('imin submit');
-    console.log(e);
-    const completedCheckBox = document.querySelector("#completed");
+    //prevent default submit
     e.preventDefault();
+    //initialize variables
+    const completedCheckBox = document.querySelector("#completed");
+    //prepare new Improvement Obj
     const newImprovementObj = {
         completed: completedCheckBox.checked,
         improvement: improvement,
@@ -101,14 +72,15 @@ export default function ComposedTextField(props) {
         notes: notes,
         id: uuid() 
     };
+    //add new improvement object to state
     props.addimprovement(props.room, newImprovementObj);
+    //reset form
     resetForm();
 }
   return (
     <div className={classes.container}>
         <form onSubmit={submitImprovement} className={classes.root}>
-            <h3>Add Improvement</h3>
-            
+            <h2>Add Improvement</h2>           
             <FormControl className={classes.formControl}>
                 <label htmlFor="completed">
                     Completed
@@ -131,7 +103,7 @@ export default function ComposedTextField(props) {
                     id="improvement"
                     value={improvement}
                     onChange={handleChange}
-                    labelWidth={labelWidth}
+                    labelWidth={labelWidth+70}
                 />
             </FormControl>
             
@@ -154,18 +126,18 @@ export default function ComposedTextField(props) {
                     id="estPriceAdj"
                     value={estPriceAdj}
                     onChange={handleChange}
-                    labelWidth={labelWidth}
+                    labelWidth={labelWidth+60}
                 />
             </FormControl>
             <FormControl className={classes.formControl} variant="outlined">
                 <InputLabel ref={labelRef} htmlFor="estTimeToSell">
-                    estTimeToSell
+                    estTimeAdj
                 </InputLabel>
                 <OutlinedInput
                     id="estTimeToSell"
                     value={estTimeToSell}
                     onChange={handleChange}
-                    labelWidth={labelWidth}
+                    labelWidth={labelWidth+60}
                 />
             </FormControl>
             <FormControl className={classes.formControl} variant="outlined">
@@ -180,46 +152,10 @@ export default function ComposedTextField(props) {
                 />
             </FormControl>
             <div className={classes.buttonControl}>
-                <Button type="submit" variant='contained' color='primary'>Submit</Button>
-                <Button onClick={resetForm} variant='contained' color='secondary'>Reset</Button>
-            </div>
-            
-        </form>
-      
+                <Button style={{backgroundColor: 'rgb(65, 57, 129)'}} type="submit" variant='contained' color='primary'>Submit</Button>
+                <Button style={{backgroundColor: '#237CB1'}} onClick={resetForm} variant='contained' color='secondary'>Reset</Button>
+            </div>          
+        </form>     
     </div>
   );
 }
-
-
-// import { withStyles } from '@material-ui/core';
-// import {styles} from '../styles/AddImprovementsStyles';
-
-// function AddImprovement(props) {
-//     const { classes } = props;
-//     console.log('porps', props);
-
-    // function submitImprovement(e) {
-    //     console.log('imin submit');
-    //     e.preventDefault();
-    //     const newImprovementObj = {
-    //         completed: true,
-    //         improvement: 'addimprovemtn',
-    //         cost: 2400,
-    //         estPriceAdj: 1500,
-    //         estTimeToSell: '1 month',
-    //         notes: 'carpet in bad shape',
-    //         id: uuid() 
-    //     };
-    //     props.addimprovement(props.room, newImprovementObj);
-    // }
-//     return (
-        // <form onSubmit={submitImprovement} className={classes.root}>
-        //     <h1>Add Improvement</h1>
-//             <label htmlFor='improvement'>Improvement</label>
-//             <input name='improvement'
-//             <button type="submit">Submit</button>
-//         </form>
-//     )
-// }
-
-// export default withStyles(styles)(AddImprovement);

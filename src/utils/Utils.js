@@ -12,50 +12,25 @@ const range = len => {
   return arr;
 };
 
-const newImprovement = (improvement, change) => {
+const newImprovement = (improvement) => {
   return {
+      newCompleted: improvement.newCompleted,
       completed: improvement.completed,
       improvement: improvement.improvement,
       cost: improvement.cost,
       estPriceAdj: improvement.estPriceAdj,
       estTimeToSell: improvement.estTimeToSell,
       notes: improvement.notes,
-      itemId: improvement.id,
-      change: change 
-  
-  // return {
-  //     completed: true,
-  //     improvement: 'thisis',
-  //     notes: 'me',
-  //     age: 22,
-  //     visits: 5,
-  //     progress: 65,
-  //     status:
-  //       statusChance > 0.66
-  //         ? "relationship"
-  //         : statusChance > 0.33 ? "complicated" : "single"
-  //     };
-  // return {
-  //   firstName: namor.generate({ words: 1, numbers: 0 }),
-  //   lastName: namor.generate({ words: 1, numbers: 0 }),
-  //   age: Math.floor(Math.random() * 30),
-  //   visits: Math.floor(Math.random() * 100),
-  //   progress: Math.floor(Math.random() * 100),
-  //   status:
-  //     statusChance > 0.66
-  //       ? "relationship"
-  //       : statusChance > 0.33 ? "complicated" : "single"
-  // };
+      itemId: improvement.id
   };
 };
 
-export function makeData(improvements, change) {
+export function makeData(improvements) {
   console.log('improv', Array.from(improvements));
   console.log(typeof improvements);
   return improvements.map(improvement => {
     return {
-      ...newImprovement(improvement, change),
-      children: range(10).map(newImprovement)
+      ...newImprovement(improvement)
     };
   });
 }

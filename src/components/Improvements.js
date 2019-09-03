@@ -1,5 +1,5 @@
 import React from "react";
-import { makeData, Logo, Tips } from "../utils/Utils";
+import { makeData } from "../utils/Utils";
 
 // Import React Table
 import ReactTable from "react-table";
@@ -8,19 +8,13 @@ import "react-table/react-table.css";
 class Improvements extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props.improvements[this.props.room]);
     this.state = {
-      data: makeData(this.props.improvements[this.props.room], this.props.change)
+      data: makeData(this.props.improvements[this.props.room])
     };
     this.renderEditable = this.renderEditable.bind(this);
   }
   componentDidMount() {
-    console.log('didmount');
     this.setState({ data : this.props.improvements[this.props.room] });
-  }
-  shouldComponentUpdate(nextProps, nextState) {
-    return true;
-    //return nextProps.room != this.props.room;
   }
   renderEditable(cellInfo) {
     return (
@@ -29,7 +23,6 @@ class Improvements extends React.Component {
         contentEditable
         suppressContentEditableWarning
         onBlur={e => {
-          //const itemId = data[cellInfo.index][cellInfo];
           const data = [...this.state.data];
           data[cellInfo.index][cellInfo.column.id] = e.target.innerHTML;
           this.setState({ data });
@@ -48,11 +41,24 @@ class Improvements extends React.Component {
       <div>
         <ReactTable
           data={data}
-          columns={[
+          columns={[           
             {
-              Header: "Completed",
-              accessor: "completed",
-              Cell: this.renderEditable
+              id: "checkbox",
+              accessor: "",
+              Cell: ({ original }) => {
+                return (
+                  <input
+                    id='completed'
+                    type="checkbox"
+                    className="checkbox"
+                    checked={ original.completed }
+                    onChange={() => alert("Check/Uncheck completed under construction")}
+                  />
+                );
+              },
+              Header: 'Completed',
+              width: 100,
+              sortable: false
             },
             {
               Header: "Improvement",
@@ -82,19 +88,17 @@ class Improvements extends React.Component {
             {
               Header: "Item Id",
               accessor: "itemId",
-              Cell: this.renderEditable
+              Cell: this.renderEditable,
+              show: false
             }
           ]}
-          defaultPageSize={10}
+          defaultPageSize={this.props.improvements[this.props.room].length}
+          showPagination= {false}
           className="-striped -highlight"
         />
-        <br />
-        <Tips />
-        <Logo />
       </div>
     );
   }
 }
 
 export default Improvements;
-// render(<App />, document.getElementById("root"));

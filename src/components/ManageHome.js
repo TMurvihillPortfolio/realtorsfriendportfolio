@@ -56,15 +56,10 @@ function ManageHome(props) {
         setImprovements({...improvements, [room]: improvementsCopy[room]});
     }
     function addImprovement(room, improvementObj) {
-        console.log('imin addimprove');
-        console.log(room, improvementObj);
-        console.log(improvements[room]);
         const copyRoomArray = [...improvements[room]];
         copyRoomArray.push(improvementObj);
-        console.log(copyRoomArray);
         setImprovements({...improvements, [room]: copyRoomArray});
         setToggleTableRerender(!toggleTableRerender);
-        //console.log(improvements);
     }
     //used for debugging state
     useEffect(() => console.log(improvements));
@@ -93,13 +88,13 @@ function ManageHome(props) {
                 buyerComments={comments.buyerComments[room]}
                 sellerComments={comments.sellerComments[room]}
                 updateComments={updateComments}
-            />
-            <AddImprovement room={room} addimprovement={addImprovement}/>
-            <div style={{backgroundColor: 'wheat'}}> {/* workaround -- for some reason changing the props inside Improvements tag room does not trigger a table change. A new table must be created, hence the outer if statements. */}    
+            />           
+            <div style={{backgroundColor: 'wheat', padding: '30px 0'}}> {/* workaround -- for some reason changing the props inside Improvements tag room does not trigger a table change. A new table must be created, hence the outer if statements. */}    
+                <h1>Improvement Suggestions</h1>
                 {toggleTableRerender && <Improvements room={room} improvements= {improvements} updateImprovements={updateImprovements}/>}
                 {!toggleTableRerender && <Improvements room={room} improvements= {improvements} updateImprovements={updateImprovements}/>}    
             </div>
-            
+            <AddImprovement room={room} addimprovement={addImprovement}/>
             <Footer /> 
         </div>        
     );
