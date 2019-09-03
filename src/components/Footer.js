@@ -5,7 +5,7 @@ import { flexbox } from '@material-ui/system';
 
 const styles = {
     footer: {
-        marginTop: '50px',
+        marginTop: '30px',
         display: 'block',
         padding: '20px'
     },
@@ -50,7 +50,7 @@ const styles = {
     },
     copyRight: {
         color: 'whitesmoke',
-        marginBottom: '30px',
+        marginBottom: '10px',
         "& p": {
             color: 'whitesmoke'
         } 

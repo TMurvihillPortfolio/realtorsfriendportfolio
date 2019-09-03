@@ -14,7 +14,6 @@ const range = len => {
 
 const newImprovement = (improvement) => {
   return {
-      newCompleted: improvement.newCompleted,
       completed: improvement.completed,
       improvement: improvement.improvement,
       cost: improvement.cost,
@@ -26,8 +25,6 @@ const newImprovement = (improvement) => {
 };
 
 export function makeData(improvements) {
-  console.log('improv', Array.from(improvements));
-  console.log(typeof improvements);
   return improvements.map(improvement => {
     return {
       ...newImprovement(improvement)

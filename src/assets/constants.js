@@ -31,7 +31,6 @@ const _INITIAL_COMMENTS = {
 const _INITIAL_IMPROVEMENTS = {
     living: [
         {
-            newCompleted: false,
             completed: false,
             improvement: 'paint',
             cost: 1400,
@@ -41,7 +40,6 @@ const _INITIAL_IMPROVEMENTS = {
             id: uuid() 
         },
         {
-            newCompleted: false,
             completed: false,
             improvement: 'renovate',
             cost: '',
@@ -51,7 +49,6 @@ const _INITIAL_IMPROVEMENTS = {
             id: uuid() 
         },
         {
-            newCompleted: true,
             completed: true,
             improvement: 'replace carpet',
             cost: 2400,

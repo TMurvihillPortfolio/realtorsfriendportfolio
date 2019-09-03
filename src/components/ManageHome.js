@@ -62,7 +62,7 @@ function ManageHome(props) {
         setToggleTableRerender(!toggleTableRerender);
     }
     //used for debugging state
-    useEffect(() => console.log(improvements));
+    //useEffect(() => console.log(improvements));
     return (
         <div className={classes.root}>
             <NavBar />

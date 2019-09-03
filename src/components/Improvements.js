@@ -1,5 +1,6 @@
 import React from "react";
 import { makeData } from "../utils/Utils";
+import Checkbox from '@material-ui/core/Checkbox';
 
 // Import React Table
 import ReactTable from "react-table";
@@ -26,7 +27,7 @@ class Improvements extends React.Component {
           const data = [...this.state.data];
           data[cellInfo.index][cellInfo.column.id] = e.target.innerHTML;
           this.setState({ data });
-          this.props.updateImprovements(cellInfo.original.itemId, cellInfo.column.id, e.target.innerHTML);
+          this.props.updateImprovements(cellInfo.original.id, cellInfo.column.id, e.target.innerHTML);
         }}
         dangerouslySetInnerHTML={{
           __html: this.state.data[cellInfo.index][cellInfo.column.id]
@@ -87,7 +88,7 @@ class Improvements extends React.Component {
             },
             {
               Header: "Item Id",
-              accessor: "itemId",
+              accessor: "id",
               Cell: this.renderEditable,
               show: false
             }

@@ -11,6 +11,7 @@ import { useStyles } from '../styles/AddImprovementsStyles';
 
 export default function ComposedTextField(props) {
   const [labelWidth, setLabelWidth] = React.useState(0);
+  const [completed, setCompleted] = React.useState('');
   const [improvement, setImprovement] = React.useState('');
   const [cost, setCost] = React.useState('');
   const [estPriceAdj, setEstPriceAdj] = React.useState('');
@@ -24,10 +25,11 @@ export default function ComposedTextField(props) {
   }, []);
 
   function handleChange(e) {
+      console.log('handle', e.target.checked);
     if (e.target.id !== undefined) {
         switch(e.target.id) {
             case 'completed':
-                //not necessary to keep track of in state
+                setCompleted(e.target.checked);
                 break;
             case 'improvement':
                 setImprovement(e.target.value);
@@ -42,7 +44,7 @@ export default function ComposedTextField(props) {
                 setEstTimeToSell(e.target.value);
               break;
             case 'notes':
-                setNotes(e.target.notes);
+                setNotes(e.target.value);
               break;
             default:
               // code block
@@ -50,7 +52,7 @@ export default function ComposedTextField(props) {
     }       
   }
   function resetForm() {
-   document.querySelector("#completed").checked = false;
+   setCompleted(false);
    setImprovement('');
    setCost('');
    setEstPriceAdj('');
@@ -62,9 +64,10 @@ export default function ComposedTextField(props) {
     e.preventDefault();
     //initialize variables
     const completedCheckBox = document.querySelector("#completed");
+    console.log('checked', completedCheckBox.checked);
     //prepare new Improvement Obj
     const newImprovementObj = {
-        completed: completedCheckBox.checked,
+        completed: completed,
         improvement: improvement,
         cost: cost,
         estPriceAdj: estPriceAdj,
@@ -86,14 +89,15 @@ export default function ComposedTextField(props) {
                     Completed
                 </label>
                 <Checkbox
-                //checked={completed}
-                id="completed"
-                onChange={handleChange}
-                color="primary"
-                inputProps={{
-                  'aria-label': 'secondary checkbox',
-                }}
-            />
+                    //checked={completed}
+                    id="completed"
+                    onChange={handleChange}
+                    color="primary"
+                    checked={completed}
+                    inputProps={{
+                        'aria-label': 'secondary checkbox',
+                    }}
+                />
             </FormControl>
             <FormControl className={classes.formControl} variant="outlined">
                 <InputLabel ref={labelRef} htmlFor="improvement">
