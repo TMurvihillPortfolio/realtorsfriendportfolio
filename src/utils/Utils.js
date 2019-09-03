@@ -12,7 +12,7 @@ const range = len => {
   return arr;
 };
 
-const newImprovement = (improvement) => {
+const newImprovement = (improvement, change) => {
   return {
       completed: improvement.completed,
       improvement: improvement.improvement,
@@ -20,7 +20,8 @@ const newImprovement = (improvement) => {
       estPriceAdj: improvement.estPriceAdj,
       estTimeToSell: improvement.estTimeToSell,
       notes: improvement.notes,
-      itemId: improvement.id 
+      itemId: improvement.id,
+      change: change 
   
   // return {
   //     completed: true,
@@ -48,11 +49,12 @@ const newImprovement = (improvement) => {
   };
 };
 
-export function makeData(room) {
-  console.log('room', room);
-  return _INITIAL_IMPROVEMENTS[room].map(improvement => {
+export function makeData(improvements, change) {
+  console.log('improv', Array.from(improvements));
+  console.log(typeof improvements);
+  return improvements.map(improvement => {
     return {
-      ...newImprovement(improvement),
+      ...newImprovement(improvement, change),
       children: range(10).map(newImprovement)
     };
   });

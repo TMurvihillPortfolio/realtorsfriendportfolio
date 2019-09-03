@@ -1,83 +1,100 @@
-import React, { useState } from 'react';
-import uuid from 'uuid';
-import { withStyles } from '@material-ui/core/styles';
-import styles from '../styles/ImprovementsCSS.js';
-//#region MaterialU
-import Typography from '@material-ui/core/Typography';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Checkbox from '@material-ui/core/Checkbox';
-import Paper from '@material-ui/core/Paper';
-//#endregion
-import Improvement from './Improvement';
-import { _INITIAL_IMPROVEMENTS } from '../assets/constants';
+import React from "react";
+import { makeData, Logo, Tips } from "../utils/Utils";
 
-function createData(completed, improvement, cost, estPriceAdj, estTimeToSell, notes, id) {
-  return { completed, improvement, cost, estPriceAdj, estTimeToSell, notes, id };
-}
+// Import React Table
+import ReactTable from "react-table";
+import "react-table/react-table.css";
 
-const rowsArray = [
-  createData(false, 'paint', '$1200', 0, '3 weeks', 'paint is so-so', uuid()),
-  createData(false, 'stage', '$600', '$2000', '2 weeks', "room needs staging", uuid()),
-  createData(false, 'renovate', '--', '--', '--', 'not recommended', uuid()),
-  createData(true, 'deep clean', '$300', 0, '2 weeks', 'could use it', uuid()),
-  createData(false, 'landscape', '--', '--', '--', '', uuid()),
-];
-
-function Improvements({ classes, room }) {
-    //const [ rows, setRows ] = useState(rowsArray);
-    const [ improvements, setImprovements ] = useState(_INITIAL_IMPROVEMENTS);
-    const roomObject = improvements[room];
-    console.log('room');
-    console.log(room);
-    console.log('roomobj');
-    console.log(roomObject);
-    const keysArray = Object.keys(improvements[room]);
-    let improvementName;
-    const rows = keysArray.map(key => {
-      improvementName = key;
-      return {...improvements.living[key]};
-    });
+class Improvements extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log(this.props.improvements[this.props.room]);
+    this.state = {
+      data: makeData(this.props.improvements[this.props.room], this.props.change)
+    };
+    this.renderEditable = this.renderEditable.bind(this);
+  }
+  componentDidMount() {
+    console.log('didmount');
+    this.setState({ data : this.props.improvements[this.props.room] });
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    return true;
+    //return nextProps.room != this.props.room;
+  }
+  renderEditable(cellInfo) {
+    return (
+      <div
+        style={{ backgroundColor: "#fafafa" }}
+        contentEditable
+        suppressContentEditableWarning
+        onBlur={e => {
+          //const itemId = data[cellInfo.index][cellInfo];
+          const data = [...this.state.data];
+          data[cellInfo.index][cellInfo.column.id] = e.target.innerHTML;
+          this.setState({ data });
+          this.props.updateImprovements(cellInfo.original.itemId, cellInfo.column.id, e.target.innerHTML);
+        }}
+        dangerouslySetInnerHTML={{
+          __html: this.state.data[cellInfo.index][cellInfo.column.id]
+        }}
+      />
+    );
+  }
+  render() {   
+    const { data } = this.state;
     
-    function updateImprovement(id, newValue) {
-        const newRoomImprovements = roomObject.map(improvement => {
-            if (improvement.id === id ) {
-                return newValue;
-            } else {
-                return improvement;
-            }           
-        });
-        setImprovements({...improvements, [room]:newRoomImprovements});
-    }
-  return (
-    <Paper className={classes.root}>
-    <Typography className={classes.heading} variant='h4'>Improvements for {room}</Typography>           
-      <Table className={classes.improvement}>
-        <TableHead>
-          <TableRow>  
-            <TableCell></TableCell>
-            <TableCell>Improvement</TableCell>
-            <TableCell align="right">Cost to Seller</TableCell>
-            <TableCell align="right">Est. Price Adj</TableCell>
-            <TableCell align="right">Est. Time to Sell</TableCell>
-            <TableCell align="right">Notes</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {/* <Improvement row={row} improvementName={improvementName} updateImprovement={updateImprovement}/>  */}
-          {roomObject.map(row => (
-              <Improvement 
-                key={uuid()}
-                row={row} 
-                updateImprovement={updateImprovement}
-              />          
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>
-  );
+    return (
+      <div>
+        <ReactTable
+          data={data}
+          columns={[
+            {
+              Header: "Completed",
+              accessor: "completed",
+              Cell: this.renderEditable
+            },
+            {
+              Header: "Improvement",
+              accessor: "improvement",
+              Cell: this.renderEditable
+            },
+            {
+              Header: "Cost",
+              accessor: "cost",
+              Cell: this.renderEditable
+            },
+            {
+              Header: "Price Adj",
+              accessor: "estPriceAdj",
+              Cell: this.renderEditable
+            },
+            {
+              Header: "Time to Sell",
+              accessor: "estTimeToSell",
+              Cell: this.renderEditable
+            },
+            {
+              Header: "Notes",
+              accessor: "notes",
+              Cell: this.renderEditable
+            },
+            {
+              Header: "Item Id",
+              accessor: "itemId",
+              Cell: this.renderEditable
+            }
+          ]}
+          defaultPageSize={10}
+          className="-striped -highlight"
+        />
+        <br />
+        <Tips />
+        <Logo />
+      </div>
+    );
+  }
 }
-export default withStyles(styles)(Improvements);
+
+export default Improvements;
+// render(<App />, document.getElementById("root"));

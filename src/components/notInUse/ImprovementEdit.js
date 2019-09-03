@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import uuid from 'uuid';
 import { withStyles } from '@material-ui/core';
-import styles from '../styles/ImprovementEditCSS';
+import styles from '../../styles/ImprovementEditCSS';
 //#region Material UI
 import TableCell from '@material-ui/core/TableCell';
 import Checkbox from '@material-ui/core/Checkbox';

@@ -13,10 +13,8 @@ import RoomComments from './RoomComments';
 import Improvements from './Improvements';
 import NavBar from './NavBar';
 import Footer from './Footer';
-import TestEditableTable from './TestEditableTable';
+import AddImprovement from './AddImprovement';
 import { _INITIAL_COMMENTS, _INITIAL_IMPROVEMENTS } from '../assets/constants';
-
-
 
 function ManageHome(props) {
     const { classes } = props;
@@ -24,6 +22,7 @@ function ManageHome(props) {
     const [ roomImage, setRoomImage ] = useState(livingImage);
     const [ comments, setComments ] = useState(_INITIAL_COMMENTS);
     const [ improvements, setImprovements ] = useState(_INITIAL_IMPROVEMENTS);
+    const [ toggleTableRerender, setToggleTableRerender ] = useState(true);
     
     const fullRoomName = {
         living: 'Living Room',
@@ -35,6 +34,7 @@ function ManageHome(props) {
         if (newRoom==='living') setRoomImage(livingImage);
         if (newRoom==='kitchen') setRoomImage(kitchenImage);
         if (newRoom==='master') setRoomImage(masterImage);
+        setToggleTableRerender(!toggleTableRerender);
     }
     function updateComments(commenter, room, comment) {
         //create new commenter object
@@ -54,6 +54,17 @@ function ManageHome(props) {
         improvementsCopy[room].splice(replaceIndex, 1, newImprovementObj);
         //update array of room improvements in state
         setImprovements({...improvements, [room]: improvementsCopy[room]});
+    }
+    function addImprovement(room, improvementObj) {
+        console.log('imin addimprove');
+        console.log(room, improvementObj);
+        console.log(improvements[room]);
+        const copyRoomArray = [...improvements[room]];
+        copyRoomArray.push(improvementObj);
+        console.log(copyRoomArray);
+        setImprovements({...improvements, [room]: copyRoomArray});
+        setToggleTableRerender(!toggleTableRerender);
+        //console.log(improvements);
     }
     //used for debugging state
     useEffect(() => console.log(improvements));
@@ -83,10 +94,10 @@ function ManageHome(props) {
                 sellerComments={comments.sellerComments[room]}
                 updateComments={updateComments}
             />
-            <div style={{backgroundColor: 'wheat'}}> {/* NOT YET IMPLEMENTED workaround -- for some reason updating the room state prop does not rerender the table. A new table must be created, hence the if statements. */}
-                {room==='kitchen' && <TestEditableTable room={room} updateImprovements={updateImprovements}/>}
-                {room==='living' && <TestEditableTable room={room} updateImprovements={updateImprovements}/>}
-                {room==='master' && <TestEditableTable room={room} updateImprovements={updateImprovements}/>}
+            <AddImprovement room={room} addimprovement={addImprovement}/>
+            <div style={{backgroundColor: 'wheat'}}> {/* workaround -- for some reason changing the props inside Improvements tag room does not trigger a table change. A new table must be created, hence the outer if statements. */}    
+                {toggleTableRerender && <Improvements room={room} improvements= {improvements} updateImprovements={updateImprovements}/>}
+                {!toggleTableRerender && <Improvements room={room} improvements= {improvements} updateImprovements={updateImprovements}/>}    
             </div>
             
             <Footer /> 

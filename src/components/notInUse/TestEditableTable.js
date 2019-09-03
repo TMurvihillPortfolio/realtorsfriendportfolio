@@ -2,7 +2,7 @@
  * original working TestEditableTable.js
  *********/
 import React from "react";
-import { makeData, Logo, Tips } from "../utils/Utils";
+import { makeData, Logo, Tips } from "../../utils/Utils";
 
 // Import React Table
 import ReactTable from "react-table";
