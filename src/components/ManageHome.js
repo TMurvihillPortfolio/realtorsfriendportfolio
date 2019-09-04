@@ -18,7 +18,7 @@ import { _INITIAL_COMMENTS, _INITIAL_IMPROVEMENTS, _FULL_ROOM_NAME } from '../as
 function ManageHome(props) {
     const { classes } = props;
     const [ improvements, setImprovements ] = useState(_INITIAL_IMPROVEMENTS);
-    const { comments, updateComments  } = useContext(CommentsContext);
+    const { comments  } = useContext(CommentsContext);
     const { 
         room,  
         roomImage, 
@@ -26,21 +26,7 @@ function ManageHome(props) {
         toggleTableRerender, 
         changeToggleTableRerender
     } = useContext(RoomContext);
-   
 
-    // function changeRoom(newRoom) {
-    //     setRoom(newRoom);
-    //     if (newRoom==='living') setRoomImage(livingImage);
-    //     if (newRoom==='kitchen') setRoomImage(kitchenImage);
-    //     if (newRoom==='master') setRoomImage(masterImage);
-    //     setToggleTableRerender(!toggleTableRerender);
-    // }
-    // function updateComments(commenter, room, comment) {
-    //     //create new commenter object
-    //     const commenterObj = {...comments[commenter], [room]: comment};
-    //     //replace commenter object in state
-    //     //setComments({...comments, [commenter]: commenterObj});
-    // }
     function updateImprovements(improvementId, attribute, text) {
         //copy state
         let improvementsCopy = {...improvements};
@@ -64,15 +50,13 @@ function ManageHome(props) {
         //trigger table rerender
         changeToggleTableRerender();
     }
-    //used for debugging state
     useEffect(() => {
-        // window.addEventListener('beforeunload', (event) => {
-        //     // Cancel the event as stated by the standard.
-        //     event.preventDefault();
-        //     event.returnValue = '';
-        //   });
-        // console.log(room, toggleTableRerender)}
-        // );
+        //warn user that changes are not saved on this sample site
+        window.addEventListener('beforeunload', (event) => {
+            // Cancel the event as stated by the standard.
+            event.preventDefault();
+            event.returnValue = '';
+          });       
     });
     return (       
         <div className={classes.root}>
@@ -98,7 +82,6 @@ function ManageHome(props) {
                 realtorComments={comments.realtorComments[room]}
                 buyerComments={comments.buyerComments[room]}
                 sellerComments={comments.sellerComments[room]}
-                updateComments={updateComments}
             />           
             <div className={classes.table}> {/* workaround -- for some reason changing the props inside Improvements tag does not trigger a table change. A new table must be created, hence the outer if statements. */}    
                 <h1>Improvement Suggestions</h1>

@@ -2,9 +2,9 @@ import React from 'react';
 import underConstruction from '../img/underconstuction.jpg';
 import NavBar from './NavBar';
 
-function Contact(props) {
+function Contact() {
     return(
-        <div style={{backgroundColor: '#241F4D'}}>
+        <div style={{backgroundColor: '#241F4D', height: '1500px'}}>
             <NavBar />
             <div style={{width: '100%', marginTop: '50px'}}>
                 <h1 style={{textAlign:'center',color:'#D0C9DD'}}>Contact Page</h1>

@@ -35,8 +35,7 @@ class Improvements extends React.Component {
     );
   }
   render() {   
-    const { data } = this.state;
-    
+    const { data } = this.state;    
     return (
       <div>
         <ReactTable
@@ -52,7 +51,7 @@ class Improvements extends React.Component {
                     type="checkbox"
                     className="checkbox"
                     checked={ original.completed }
-                    onChange={() => alert("Check/Uncheck completed under construction")}
+                    onChange={() => alert("'Completed' checkbox is under construction")}
                   />
                 );
               },

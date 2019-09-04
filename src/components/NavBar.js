@@ -8,15 +8,6 @@ import { _MEDIA_QUERIES } from '../assets/constants';
 
 function NavBar(props) {
     const { classes } = props;
-    // constructor(props) {
-    //     super(props);
-    //     this.handleDropDownClick=this.handleDropDownClick.bind(this);
-    //     this.closeMenu=this.closeMenu.bind(this);
-    //     this.handleOpenMobile=this.handleOpenMobile.bind(this);
-    //     this.state = { 
-    //         open: false
-    //      }
-    // }
     
     function closeMenu(e) {
         e.stopPropagation();
@@ -44,7 +35,8 @@ function NavBar(props) {
         links.style.textAlign= 'right';      
         links.style.top= '0';
         links.style.width= '90px';
-        links.style.backgroundColor= '#f5deb3';
+        links.style.backgroundColor= 'rgb(245,222,179)';
+        links.style.backgroundColor= 'rgba(245,222,179, 0.8)';
         links.style.borderRadius = '7px';
         a_links.map(link => {
             link.style.color = '#333';

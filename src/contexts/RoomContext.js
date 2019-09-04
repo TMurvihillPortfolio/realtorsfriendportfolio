@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-//#region room images
+//#region import room images
 import livingImage from '../img/livingroom.jpg';
 import kitchenImage from '../img/kitchen.jpg';
 import masterImage from '../img/masterbedroom.jpg';

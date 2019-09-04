@@ -1,71 +1,8 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import styles from '../styles/FooterStyles';
 import logo from '../img/logo.jpg';
-import { _MEDIA_QUERIES } from '../assets/constants';
 
-const styles = {
-    footer: {
-        marginTop: '30px',
-        display: 'block',
-        padding: '20px'
-    },
-    line1: {
-        display: 'flex',
-        justifyContent: 'space-between'
-    },
-    logo: {
-        height: '30px',
-        borderRadius: '3px'
-    },
-    menuContainer: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        height: 'fit-content',       
-        '& a': {
-            color: 'whitesmoke',
-            marginLeft: '20px',
-            textDecoration: 'none',
-            borderBottom: '1px solid transparent',
-            transition: 'all .5s',
-            padding: '5px',
-            [_MEDIA_QUERIES.down('sm')]: {
-                fontSize: '12px'
-            }
-        },
-        "& a:hover": {
-            borderBottom: '1px solid whitesmoke'
-        }       
-    },
-    social: {
-        "& p": {
-            color: 'whitesmoke',
-            [_MEDIA_QUERIES.down('sm')]: {
-                fontSize: '12px'
-            }
-        },
-        "& a": {
-            color: 'whitesmoke',
-            textDecoration: 'none',
-            borderBottom: '1px solid transparent',
-            transition: 'all .5s',
-            padding: '5px',
-            "&:hover": {
-                borderBottom: '1px solid whitesmoke'
-            }
-        }           
-    },
-    copyRight: {
-        color: 'whitesmoke',
-        marginBottom: '12px',
-        ["& p"]: {
-            color: 'whitesmoke',
-            [_MEDIA_QUERIES.down('sm')]: {
-                fontSize: '10px'
-            }
-        }
-
-    }
-}
 class Footer extends Component {
     constructor(props) {
         super(props);
@@ -81,22 +18,16 @@ class Footer extends Component {
                         <a href="#">Home</a>
                         <a href="#">About</a>
                         <a href="https://take2tech.ca/contact">Contact</a> 
-                    </div>
-                    
+                    </div>                    
                 </div>
                 <div className={classes.social}>
-                    <a href="https://www.linkedin.com/in/tisha-murvihill-tech" target="_blank">
-                        {/* <img src="img/linkedin.jpg" class="footer__menuContainer--social-item-img"/> */}
-
-                    </a>
-                    {/* <i class="ion-social-linkedin footer__menuContainer--social-item-icon"></i> */}
                     <p>Website by: <a href="mailto:tech@take2tech.ca" target="_blank">tech@take2tech.ca</a></p>
                 </div>
                 <div className={classes.copyRight}>
                     <p>&copy; 2019 by take2tech.ca. All rights reserved. ver 8.08-m</p>
                 </div>
             </div>
-         );
+        );
     }
 }
  

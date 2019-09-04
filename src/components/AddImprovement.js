@@ -9,22 +9,25 @@ import Checkbox from '@material-ui/core/Checkbox';
 //#endregion
 import { useStyles } from '../styles/AddImprovementsStyles';
 
-export default function ComposedTextField(props) {
-  const [labelWidth, setLabelWidth] = React.useState(0);
+export default function ComposedTextField(props) {   
+  const classes = useStyles();
+  const [labelWidth, setLabelWidth] = React.useState(0);  
+  const labelRef = React.useRef(null);
+  //#region form controls
   const [completed, setCompleted] = React.useState('');
   const [improvement, setImprovement] = React.useState('');
   const [cost, setCost] = React.useState('');
   const [estPriceAdj, setEstPriceAdj] = React.useState('');
   const [estTimeToSell, setEstTimeToSell] = React.useState('');
   const [notes, setNotes] = React.useState('');
-  const labelRef = React.useRef(null);
-  const classes = useStyles();
-
+  //#endregion
+  
   useEffect(() => {
     setLabelWidth(labelRef.current.offsetWidth);
   }, []);
 
   function handleChange(e) {
+    //update state onchange
     if (e.target.id !== undefined) {
         switch(e.target.id) {
             case 'completed':
@@ -46,8 +49,8 @@ export default function ComposedTextField(props) {
                 setNotes(e.target.value);
               break;
             default:
-              // code block
-          }
+              // NOT YET IMPLEMENTED error code
+        }
     }       
   }
   function resetForm() {
@@ -61,9 +64,6 @@ export default function ComposedTextField(props) {
   function submitImprovement(e) {
     //prevent default submit
     e.preventDefault();
-    //initialize variables
-    const completedCheckBox = document.querySelector("#completed");
-    console.log('checked', completedCheckBox.checked);
     //prepare new Improvement Obj
     const newImprovementObj = {
         completed: completed,
@@ -78,7 +78,7 @@ export default function ComposedTextField(props) {
     props.addimprovement(props.room, newImprovementObj);
     //reset form
     resetForm();
-}
+  }
   return (
     <div className={classes.container}>
         <form onSubmit={submitImprovement} className={classes.root}>
@@ -88,7 +88,6 @@ export default function ComposedTextField(props) {
                     Completed
                 </label>
                 <Checkbox
-                    //checked={completed}
                     id="completed"
                     onChange={handleChange}
                     color="primary"
@@ -154,8 +153,22 @@ export default function ComposedTextField(props) {
                 />
             </FormControl>
             <div className={classes.buttonControl}>
-                <Button style={{backgroundColor: 'rgb(65, 57, 129)'}} type="submit" variant='contained' color='primary'>Submit</Button>
-                <Button style={{backgroundColor: '#237CB1'}} onClick={resetForm} variant='contained' color='secondary'>Reset</Button>
+                <Button 
+                    style={{backgroundColor: 'rgb(65, 57, 129)'}} 
+                    type="submit" 
+                    variant='contained' 
+                    color='primary'
+                >
+                    Submit
+                </Button>
+                <Button 
+                    style={{backgroundColor: '#237CB1'}} 
+                    onClick={resetForm} 
+                    variant='contained' 
+                    color='secondary'
+                >
+                    Reset
+                </Button>
             </div>          
         </form>     
     </div>

@@ -2,15 +2,14 @@ import React from 'react';
 import underConstruction from '../img/underconstuction.jpg';
 import NavBar from './NavBar';
 
-function About(props) {
+function About() {
     return(
-        <div style={{backgroundColor: '#241F4D'}}>
+        <div style={{backgroundColor: '#241F4D', height: '1500px'}}>
             <NavBar />
             <div style={{width: '100%', marginTop: '50px'}}>
                 <h1 style={{textAlign: 'center', color: '#D0C9DD'}}>About Page</h1>
                 <img src={underConstruction} style={{marginLeft: '20%', width: '60%'}} alt='Under construction'/>
-            </div>
-            
+            </div>           
         </div>
     );
 }

@@ -15,8 +15,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
 //#endregion
-import Improvement from './notInUse/Improvement';
-import { _INITIAL_IMPROVEMENTS } from '../assets/constants';
+import Improvement from './Improvement';
+import { _INITIAL_IMPROVEMENTS } from '../../assets/constants';
 
 function createData(completed, improvement, cost, estPriceAdj, estTimeToSell, notes, id) {
   return { completed, improvement, cost, estPriceAdj, estTimeToSell, notes, id };
@@ -89,7 +89,7 @@ export default withStyles(styles)(Improvements);
  * original working TestEditableTable.js
  *********/
 import React from "react";
-import { makeData, Logo, Tips } from "../utils/Utils";
+import { makeData, Logo, Tips } from "../../utils/Utils";
 
 // Import React Table
 import ReactTable from "react-table";
@@ -167,7 +167,7 @@ export default TestEditableTable;
  */
 
 import React, { useState } from "react";
-import { makeData, Logo, Tips } from "../utils/Utils";
+import { makeData, Logo, Tips } from "../../utils/Utils";
 
 // Import React Table
 import ReactTable from "react-table";

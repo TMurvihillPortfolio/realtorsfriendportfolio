@@ -10,7 +10,12 @@ const _MEDIA_QUERIES = {
         }
         return `@media (max-width: ${sizes[size]})`
     }
-}
+};
+const _FULL_ROOM_NAME = {
+    living: 'Living Room',
+    kitchen: 'Kitchen',
+    master: 'Master Bedroom'
+};
 const _INITIAL_COMMENTS = {   
     realtorComments: {
         living:'Living Room is open and spacious',
@@ -125,11 +130,6 @@ const _INITIAL_IMPROVEMENTS = {
             id: uuid() 
         }
     ]
-}
-const _FULL_ROOM_NAME = {
-    living: 'Living Room',
-    kitchen: 'Kitchen',
-    master: 'Master Bedroom'
 }
 export { 
     _MEDIA_QUERIES, 
