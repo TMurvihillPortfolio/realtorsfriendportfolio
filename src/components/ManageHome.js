@@ -19,7 +19,7 @@ import { ImprovementsContext } from '../contexts/ImprovementsContext';
 import { _INITIAL_COMMENTS, _INITIAL_IMPROVEMENTS } from '../assets/constants';
 
 function ManageHome(props) {
-    const { room, setRoom, roomImage, toggleTableRerender  } = useContext(RoomContext);
+    const { room, setRoom, roomImage, toggleTableRerender, setToggleTableRerender  } = useContext(RoomContext);
     //const { improvements, setImprovements } = useContext(ImprovementsContext);
     const { classes } = props;
     //const [ room, setRoom ] = useState('living');
@@ -63,7 +63,7 @@ function ManageHome(props) {
         const copyRoomArray = [...improvements[room]];
         copyRoomArray.push(improvementObj);
         setImprovements({...improvements, [room]: copyRoomArray});
-        //setToggleTableRerender(!toggleTableRerender);
+        setToggleTableRerender();
     }
     //used for debugging state
     useEffect(() => console.log(room, toggleTableRerender));
@@ -100,9 +100,7 @@ function ManageHome(props) {
                 </div>
                 <AddImprovement room={room} addimprovement={addImprovement}/>
                 <Footer /> 
-            </div>
-       
-                
+            </div>              
     );
 }
 export default withStyles(styles)(ManageHome);

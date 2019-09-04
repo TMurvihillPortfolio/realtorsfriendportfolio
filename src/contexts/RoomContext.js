@@ -11,6 +11,7 @@ export class RoomProvider extends Component {
     constructor(props) {
         super(props);
         this.setRoom=this.setRoom.bind(this);
+        this.setToggleTableRerender=this.setToggleTableRerender.bind(this);
         this.state= { 
             room: 'kitchen', 
             roomImage: masterImage, 
@@ -34,9 +35,16 @@ export class RoomProvider extends Component {
             toggleTableRerender : !(this.state.toggleTableRerender) 
         });
     }
+    setToggleTableRerender() {
+        this.setState({ toggleTableRerender : !(this.state.toggleTableRerender) });
+    }
     render() {
         return(
-            <RoomContext.Provider value={{...this.state, setRoom: this.setRoom }}>
+            <RoomContext.Provider value={{
+                ...this.state, 
+                setRoom: this.setRoom,
+                setToggleTableRerender: this.setToggleTableRerender 
+            }}>
                 {this.props.children}
             </RoomContext.Provider>
         );       
