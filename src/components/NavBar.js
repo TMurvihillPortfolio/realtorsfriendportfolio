@@ -25,7 +25,7 @@ function NavBar(props) {
     function handleOpenMobile(e) {
         const links = document.querySelector('#links');
         const navBar = document.querySelector('#navBar');
-        const a_links = [...document.querySelectorAll('#links>a')];
+        const a_links = [...document.querySelectorAll('#links a')];
         const selectMenu = document.querySelector('#selectMenu');
         const mobileMenu = document.querySelector('#mobileMenu');
         //hide on outside click
@@ -43,14 +43,18 @@ function NavBar(props) {
         links.style.right= '0';
         links.style.textAlign= 'right';      
         links.style.top= '0';
-        links.style.backgroundColor= 'rgb(0,128,128,0.8)';
+        links.style.width= '90px';
+        links.style.backgroundColor= '#f5deb3';
         links.style.borderRadius = '7px';
-        a_links.map(link => link.style.fontSize='12px');
-        selectMenu.style.fontSize='14px';
-        selectMenu.style.marginLeft = '0';
-        selectMenu.style.marginRight = '13px';
-        selectMenu.style.marginTop = '0';
-        selectMenu.style.transform = 'none';
+        a_links.map(link => {
+            link.style.color = '#333';
+            link.style.marginRight = '0px';
+        });
+        // selectMenu.style.fontSize='14px';
+        // selectMenu.style.marginLeft = '0';
+        // selectMenu.style.marginRight = '13px';
+        // selectMenu.style.marginTop = '0';
+        // selectMenu.style.transform = 'none';
         mobileMenu.style.display = 'none';
     }
     return (

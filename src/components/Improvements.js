@@ -58,32 +58,39 @@ class Improvements extends React.Component {
               },
               Header: 'Completed',
               width: 100,
-              sortable: false
+              sortable: false,
+              fixed: 'left'
             },
             {
               Header: "Improvement",
               accessor: "improvement",
-              Cell: this.renderEditable
+              Cell: this.renderEditable,
+              width: 200
             },
             {
               Header: "Cost",
               accessor: "cost",
-              Cell: this.renderEditable
+              Cell: this.renderEditable,
+              width: 80
             },
             {
               Header: "Price Adj",
               accessor: "estPriceAdj",
-              Cell: this.renderEditable
+              Cell: this.renderEditable,
+              width: 80
             },
             {
               Header: "Time to Sell",
               accessor: "estTimeToSell",
-              Cell: this.renderEditable
+              Cell: this.renderEditable,
+              width: 200
             },
             {
               Header: "Notes",
               accessor: "notes",
-              Cell: this.renderEditable
+              Cell: this.renderEditable,
+              style: { 'white-space': 'unset' },
+              minWidth: 200
             },
             {
               Header: "Item Id",

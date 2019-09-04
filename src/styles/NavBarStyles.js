@@ -58,7 +58,8 @@ export default {
         display: 'none',
         [_MEDIA_QUERIES.down('md')]: {
             display: 'flex',
-            backgroundColor: '#237CB1'
+            backgroundColor: '#237CB1',
+            paddingRight: '15px'
         },
         alignItems: 'center',
         justifyContent: 'flex-end',

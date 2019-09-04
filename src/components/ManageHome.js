@@ -66,47 +66,48 @@ function ManageHome(props) {
     }
     //used for debugging state
     useEffect(() => {
-        window.addEventListener('beforeunload', (event) => {
-            // Cancel the event as stated by the standard.
-            event.preventDefault();
-            event.returnValue = '';
-          });
-        console.log(room, toggleTableRerender)}
-        );
+        // window.addEventListener('beforeunload', (event) => {
+        //     // Cancel the event as stated by the standard.
+        //     event.preventDefault();
+        //     event.returnValue = '';
+        //   });
+        // console.log(room, toggleTableRerender)}
+        // );
+    });
     return (       
-            <div className={classes.root}>
-                <NavBar />
-                <div className={classes.pageHeading}>
-                    <Typography variant='h3' gutterBottom>Realtor's Friend</Typography>
-                    <Typography variant='h4' gutterBottom>Recommedations for Home</Typography>
-                </div>
-                <div className={classes.imageGallery}>
-                    <figure>
-                        <img src={homeImage} alt='front of house two car garage flat roof'/>
-                        <figcaption><Typography className={classes.caption}>1005 BLUE COAST WAY NE</Typography></figcaption>
-                    </figure>
-                    <figure>
-                        <img src={roomImage} alt={room}/>
-                        <figcaption><Typography className={classes.caption}>{_FULL_ROOM_NAME[room].toUpperCase()}</Typography></figcaption>
-                    </figure>                
-                </div>
-                <Typography variant='h4' className={classes.pageHeading}>{_FULL_ROOM_NAME[room].toUpperCase()}</Typography>
-                <SelectRoom onChange={changeRoom}/>
-                <RoomComments 
-                    room={room}
-                    realtorComments={comments.realtorComments[room]}
-                    buyerComments={comments.buyerComments[room]}
-                    sellerComments={comments.sellerComments[room]}
-                    updateComments={updateComments}
-                />           
-                <div className={classes.table}> {/* workaround -- for some reason changing the props inside Improvements tag does not trigger a table change. A new table must be created, hence the outer if statements. */}    
-                    <h1>Improvement Suggestions</h1>
-                    {toggleTableRerender && <Improvements room={room} improvements= {improvements} updateImprovements={updateImprovements}/>}
-                    {!toggleTableRerender && <Improvements room={room} improvements= {improvements} updateImprovements={updateImprovements}/>}    
-                </div>
-                <AddImprovement room={room} addimprovement={addImprovement}/>
-                <Footer /> 
-            </div>              
+        <div className={classes.root}>
+            <NavBar />
+            <div className={classes.pageHeading}>
+                <Typography variant='h3' gutterBottom>Realtor's Friend</Typography>
+                <Typography variant='h4' gutterBottom>Recommedations for Home</Typography>
+            </div>
+            <div className={classes.imageGallery}>
+                <figure>
+                    <img src={homeImage} className={classes.roomImage} alt='front of house two car garage flat roof'/>
+                    <figcaption><Typography className={classes.caption}>1005 BLUE COAST WAY NE</Typography></figcaption>
+                </figure>
+                <figure>
+                    <img src={roomImage}  className={classes.roomImage} alt={room}/>
+                    <figcaption><Typography className={classes.caption}>{_FULL_ROOM_NAME[room].toUpperCase()}</Typography></figcaption>
+                </figure>                
+            </div>
+            <Typography variant='h4' className={classes.pageHeading}>{_FULL_ROOM_NAME[room].toUpperCase()}</Typography>
+            <SelectRoom onChange={changeRoom}/>
+            <RoomComments 
+                room={room}
+                realtorComments={comments.realtorComments[room]}
+                buyerComments={comments.buyerComments[room]}
+                sellerComments={comments.sellerComments[room]}
+                updateComments={updateComments}
+            />           
+            <div className={classes.table}> {/* workaround -- for some reason changing the props inside Improvements tag does not trigger a table change. A new table must be created, hence the outer if statements. */}    
+                <h1>Improvement Suggestions</h1>
+                {toggleTableRerender && <Improvements room={room} improvements= {improvements} updateImprovements={updateImprovements}/>}
+                {!toggleTableRerender && <Improvements room={room} improvements= {improvements} updateImprovements={updateImprovements}/>}    
+            </div>
+            <AddImprovement room={room} addimprovement={addImprovement}/>
+            <Footer /> 
+        </div>              
     );
 }
 export default withStyles(styles)(ManageHome);

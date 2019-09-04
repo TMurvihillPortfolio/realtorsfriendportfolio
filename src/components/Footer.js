@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import logo from '../img/logo.jpg';
-import { flexbox } from '@material-ui/system';
+import { _MEDIA_QUERIES } from '../assets/constants';
 
 const styles = {
     footer: {
@@ -27,7 +27,10 @@ const styles = {
             textDecoration: 'none',
             borderBottom: '1px solid transparent',
             transition: 'all .5s',
-            padding: '5px'
+            padding: '5px',
+            [_MEDIA_QUERIES.down('sm')]: {
+                fontSize: '12px'
+            }
         },
         "& a:hover": {
             borderBottom: '1px solid whitesmoke'
@@ -35,7 +38,10 @@ const styles = {
     },
     social: {
         "& p": {
-            color: 'whitesmoke'
+            color: 'whitesmoke',
+            [_MEDIA_QUERIES.down('sm')]: {
+                fontSize: '12px'
+            }
         },
         "& a": {
             color: 'whitesmoke',
@@ -50,10 +56,14 @@ const styles = {
     },
     copyRight: {
         color: 'whitesmoke',
-        marginBottom: '10px',
-        "& p": {
-            color: 'whitesmoke'
-        } 
+        marginBottom: '12px',
+        ["& p"]: {
+            color: 'whitesmoke',
+            [_MEDIA_QUERIES.down('sm')]: {
+                fontSize: '10px'
+            }
+        }
+
     }
 }
 class Footer extends Component {

@@ -1,6 +1,11 @@
+import { _MEDIA_QUERIES } from '../assets/constants';
+
 const styles = {
     root: {
         display: 'flex',
+        [_MEDIA_QUERIES.down('xs')]: {
+            display: 'block'
+        }, 
         justifyContent: 'space-between',
         marginBottom: '35px'
     },
