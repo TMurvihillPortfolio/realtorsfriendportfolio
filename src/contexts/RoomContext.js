@@ -1,4 +1,4 @@
-import React, { Component, createContext } from 'react';
+import React, { createContext, useState } from 'react';
 //#region home images
 import livingImage from '../img/livingroom.jpg';
 import kitchenImage from '../img/kitchen.jpg';
@@ -7,46 +7,40 @@ import masterImage from '../img/masterbedroom.jpg';
 
 export const RoomContext = createContext();
 
-export class RoomProvider extends Component {
-    constructor(props) {
-        super(props);
-        this.setRoom=this.setRoom.bind(this);
-        this.setToggleTableRerender=this.setToggleTableRerender.bind(this);
-        this.state= { 
-            room: 'kitchen', 
-            roomImage: masterImage, 
-            toggleTableRerender: true 
-        }
+export function RoomProvider(props) {
+    const [ room, setRoom ] = useState('living');
+    const [ roomImage, setRoomImage ] = useState(livingImage);
+    const [ toggleTableRerender, setToggleTableRerender ] = useState(true);
+        
+    function changeRoom(e) {
+        //change room and trigger table rerender
+        setRoom(e.target.value);
+        setToggleTableRerender(!toggleTableRerender);                
+        //change room image
+        switch (e.target.value) {
+            case 'living':
+                setRoomImage(livingImage);
+                break;
+            case 'kitchen':               
+                setRoomImage(kitchenImage);                
+                break;
+            case 'master':               
+                setRoomImage(masterImage);                
+                break;
+        }       
     }
-    setRoom(e) {
-        if (e.target.value==='living') this.setState({ 
-            room: e.target.value,
-             roomImage : livingImage, 
-            toggleTableRerender : !(this.state.toggleTableRerender) 
-        });
-        if (e.target.value==='kitchen') this.setState({ 
-            room: e.target.value, 
-            roomImage : kitchenImage, 
-            toggleTableRerender : !(this.state.toggleTableRerender)
-        });
-        if (e.target.value==='master') this.setState({ 
-            room: e.target.value,
-            roomImage : masterImage, 
-            toggleTableRerender : !(this.state.toggleTableRerender) 
-        });
+    function changeToggleTableRerender() {
+        setToggleTableRerender(!toggleTableRerender);
     }
-    setToggleTableRerender() {
-        this.setState({ toggleTableRerender : !(this.state.toggleTableRerender) });
-    }
-    render() {
-        return(
-            <RoomContext.Provider value={{
-                ...this.state, 
-                setRoom: this.setRoom,
-                setToggleTableRerender: this.setToggleTableRerender 
-            }}>
-                {this.props.children}
-            </RoomContext.Provider>
-        );       
-    }
+    return(
+        <RoomContext.Provider value={{
+            room, 
+            roomImage, 
+            changeRoom,
+            toggleTableRerender, 
+            changeToggleTableRerender
+        }}>
+            {props.children}
+        </RoomContext.Provider>
+    );     
 }

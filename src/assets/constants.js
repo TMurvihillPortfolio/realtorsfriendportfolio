@@ -13,19 +13,19 @@ const _MEDIA_QUERIES = {
 }
 const _INITIAL_COMMENTS = {   
     realtorComments: {
-        living:'Realtor comments for Living Room',
-        kitchen:'',
-        master:''
+        living:'Living Room is open and spacious',
+        kitchen:'Homey feel despite the high ceilings, appliances must be replaced',
+        master:'Beautifully decorated'
     },
     buyerComments:{
-        living:'',
-        kitchen:'Buyer comments for kitchen',
-        master:''
+        living:'Light fixtures are not us',
+        kitchen:'Love the high ceiling, appliances are awful',
+        master:'a little on the small side'
     },
     sellerComments:{
-        living:'',
-        kitchen:'',
-        master:'Seller comments for master'
+        living:'Lots of light throughout the day',
+        kitchen:'Spent hours entaining friends in here',
+        master:'Comfy and quiet'
     },
 };
 const _INITIAL_IMPROVEMENTS = {
@@ -76,60 +76,55 @@ const _INITIAL_IMPROVEMENTS = {
             estTimeToSell: '0 weeks',
             notes: '',
             id: uuid()
+        },
+        {
+            completed: false,
+            improvement: 'new appliances',
+            cost: 6500,
+            estPriceAdj: 0,
+            estTimeToSell: '3 months',
+            notes: 'fridge, dishwasher, stove must be replaced',
+            id: uuid()
+        },
+        {
+            completed: false,
+            improvement: 'new lighting over island',
+            cost: 1400,
+            estPriceAdj: 300,
+            estTimeToSell: '0 weeks',
+            notes: '',
+            id: uuid()
         }
     ],
     master: [
         {
             completed: false,
             improvement: 'paint',
-            cost: 400,
+            cost: 2500,
             estPriceAdj: 0,
-            estTimeToSell: '0 weeks',
+            estTimeToSell: '3 weeks',
             notes: '',
             id: uuid() 
         },
         {
             completed: false,
             improvement: 'replace carpet',
-            cost: 400,
-            estPriceAdj: 0,
+            cost: 4000,
+            estPriceAdj: 400,
             estTimeToSell: '0 weeks',
             notes: '',
             id: uuid() 
         }
     ]
 }
-export { _MEDIA_QUERIES, _INITIAL_COMMENTS, _INITIAL_IMPROVEMENTS };
-
-// function createData(completed, improvement, cost, estPriceAdj, estTimeToSell, notes, id) {
-//     return { completed, improvement, cost, estPriceAdj, estTimeToSell, notes, id };
-//   }
-
-    // renovate: {
-    //     completed: '',
-    //     cost: '',
-    //     estPriceAdj: '',
-    //     estTimeToSell: '',
-    //     notes: 'not recommended',
-    //     id: uuid() 
-    // }
-// },
-// {
-    // replaceCarpet: 
-    // completed: true,
-    // cost: 2400,
-    // estPriceAdj: 1500,
-    // estTimeToSell: '1 month less',
-    // notes: 'carpet in bad shape',
-    // id: uuid() 
-// },
-// {
-//     completed: '',
-//     improvement: '',
-//     cost: '',
-//     estPriceAdj: '',
-//     estTimeToSell: '',
-//     notes: '',
-//     id: uuid() 
-// }
-// }         
+const _FULL_ROOM_NAME = {
+    living: 'Living Room',
+    kitchen: 'Kitchen',
+    master: 'Master Bedroom'
+}
+export { 
+    _MEDIA_QUERIES, 
+    _INITIAL_COMMENTS, 
+    _INITIAL_IMPROVEMENTS, 
+    _FULL_ROOM_NAME 
+};

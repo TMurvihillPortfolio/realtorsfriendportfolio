@@ -4,12 +4,12 @@ import ManageHome from './components/ManageHome';
 import About from './components/About';
 import Contact from './components/Contact';
 import { RoomProvider } from './contexts/RoomContext';
-import { ImprovementsProvider } from './contexts/ImprovementsContext';
+import { CommentsProvider } from './contexts/CommentsContext';
 
 function App() {
   return (
     <RoomProvider>
-      <ImprovementsProvider>
+      <CommentsProvider>
         <Route>
             <Switch>
                 <Route exact path='/' render={(routeProps) => <ManageHome {...routeProps} />}/>       
@@ -19,7 +19,7 @@ function App() {
                 <Route exact path='/realtorsfriend/contact' render={(routeProps) => <Contact {...routeProps}/>}/>
             </Switch>               
         </Route>
-      </ImprovementsProvider>     
+      </CommentsProvider>     
     </RoomProvider>  
   );
 }

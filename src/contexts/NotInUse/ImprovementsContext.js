@@ -1,5 +1,5 @@
 import React, { useContext, Component, createContext } from 'react';
-import { _INITIAL_IMPROVEMENTS } from '../assets/constants';
+import { _INITIAL_IMPROVEMENTS } from '../../assets/constants';
 
 export const ImprovementsContext = createContext();
 

@@ -34,6 +34,10 @@ const styles = {
             }           
         }
     },
+    table: {
+        backgroundColor: 'wheat', 
+        padding: '30px 0'
+    },
     homeImage: {
 
     },

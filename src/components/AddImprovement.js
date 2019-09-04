@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import uuid from 'uuid';
-
-
+//#region material-ui imports
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
+//#endregion
 import { useStyles } from '../styles/AddImprovementsStyles';
 
 export default function ComposedTextField(props) {
@@ -20,12 +20,11 @@ export default function ComposedTextField(props) {
   const labelRef = React.useRef(null);
   const classes = useStyles();
 
-  React.useEffect(() => {
+  useEffect(() => {
     setLabelWidth(labelRef.current.offsetWidth);
   }, []);
 
   function handleChange(e) {
-      console.log('handle', e.target.checked);
     if (e.target.id !== undefined) {
         switch(e.target.id) {
             case 'completed':
@@ -109,8 +108,7 @@ export default function ComposedTextField(props) {
                     onChange={handleChange}
                     labelWidth={labelWidth+70}
                 />
-            </FormControl>
-            
+            </FormControl>           
             <FormControl className={classes.formControl} variant="outlined">
                 <InputLabel ref={labelRef} htmlFor="cost">
                     Cost

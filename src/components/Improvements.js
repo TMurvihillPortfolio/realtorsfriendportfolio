@@ -1,6 +1,5 @@
 import React from "react";
 import { makeData } from "../utils/Utils";
-import Checkbox from '@material-ui/core/Checkbox';
 
 // Import React Table
 import ReactTable from "react-table";

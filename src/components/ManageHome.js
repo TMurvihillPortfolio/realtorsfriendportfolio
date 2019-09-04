@@ -1,38 +1,33 @@
 import React, { useState, useEffect, useContext } from 'react';
+import styles from '../styles/ManageHomeStyles.js';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import styles from '../styles/ManageHomeStyles.js';
-//#region home images
-import homeImage from '../img/hometwocarflat.jpg';
-import livingImage from '../img/livingroom.jpg';
-import kitchenImage from '../img/kitchen.jpg';
-import masterImage from '../img/masterbedroom.jpg';
-//#endregion
+//#region components
 import SelectRoom from './SelectRoom';
 import RoomComments from './RoomComments';
 import Improvements from './Improvements';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import AddImprovement from './AddImprovement';
+//#endregion
+import homeImage from '../img/hometwocarflat.jpg';
 import { RoomContext } from '../contexts/RoomContext';
-import { ImprovementsContext } from '../contexts/ImprovementsContext';
-import { _INITIAL_COMMENTS, _INITIAL_IMPROVEMENTS } from '../assets/constants';
+import { CommentsContext } from '../contexts/CommentsContext';
+import { _INITIAL_COMMENTS, _INITIAL_IMPROVEMENTS, _FULL_ROOM_NAME } from '../assets/constants';
 
 function ManageHome(props) {
-    const { room, setRoom, roomImage, toggleTableRerender, setToggleTableRerender  } = useContext(RoomContext);
-    //const { improvements, setImprovements } = useContext(ImprovementsContext);
     const { classes } = props;
-    //const [ room, setRoom ] = useState('living');
-    //const [ roomImage, setRoomImage ] = useState(livingImage);
-    const [ comments, setComments ] = useState(_INITIAL_COMMENTS);
     const [ improvements, setImprovements ] = useState(_INITIAL_IMPROVEMENTS);
-    //const [ toggleTableRerender, setToggleTableRerender ] = useState(true);
+    const { comments, updateComments  } = useContext(CommentsContext);
+    const { 
+        room,  
+        roomImage, 
+        changeRoom,
+        toggleTableRerender, 
+        changeToggleTableRerender
+    } = useContext(RoomContext);
+   
     
-    const fullRoomName = {
-        living: 'Living Room',
-        kitchen: 'Kitchen',
-        master: 'Master Bedroom'
-    }
     // function changeRoom(newRoom) {
     //     setRoom(newRoom);
     //     if (newRoom==='living') setRoomImage(livingImage);
@@ -40,12 +35,12 @@ function ManageHome(props) {
     //     if (newRoom==='master') setRoomImage(masterImage);
     //     setToggleTableRerender(!toggleTableRerender);
     // }
-    function updateComments(commenter, room, comment) {
-        //create new commenter object
-        const commenterObj = {...comments[commenter], [room]: comment};
-        //replace commenter object in state
-        setComments({...comments, [commenter]: commenterObj});
-    }
+    // function updateComments(commenter, room, comment) {
+    //     //create new commenter object
+    //     const commenterObj = {...comments[commenter], [room]: comment};
+    //     //replace commenter object in state
+    //     //setComments({...comments, [commenter]: commenterObj});
+    // }
     function updateImprovements(improvementId, attribute, text) {
         //copy state
         let improvementsCopy = {...improvements};
@@ -60,10 +55,14 @@ function ManageHome(props) {
         setImprovements({...improvements, [room]: improvementsCopy[room]});
     }
     function addImprovement(room, improvementObj) {
+        //copy state
         const copyRoomArray = [...improvements[room]];
+        //add improvement
         copyRoomArray.push(improvementObj);
+        //update state
         setImprovements({...improvements, [room]: copyRoomArray});
-        setToggleTableRerender();
+        //trigger table rerender
+        changeToggleTableRerender();
     }
     //used for debugging state
     useEffect(() => console.log(room, toggleTableRerender));
@@ -81,11 +80,11 @@ function ManageHome(props) {
                     </figure>
                     <figure>
                         <img src={roomImage} className={classes.roomImage} alt={room}/>
-                        <figcaption><Typography className={classes.caption}>{fullRoomName[room].toUpperCase()}</Typography></figcaption>
+                        <figcaption><Typography className={classes.caption}>{_FULL_ROOM_NAME[room].toUpperCase()}</Typography></figcaption>
                     </figure>                
                 </div>
-                <Typography variant='h4' className={classes.pageHeading}>{fullRoomName[room].toUpperCase()}</Typography>
-                <SelectRoom className={classes.select} onChange={setRoom}/>
+                <Typography variant='h4' className={classes.pageHeading}>{_FULL_ROOM_NAME[room].toUpperCase()}</Typography>
+                <SelectRoom className={classes.select} onChange={changeRoom}/>
                 <RoomComments 
                     room={room}
                     realtorComments={comments.realtorComments[room]}
@@ -93,7 +92,7 @@ function ManageHome(props) {
                     sellerComments={comments.sellerComments[room]}
                     updateComments={updateComments}
                 />           
-                <div style={{backgroundColor: 'wheat', padding: '30px 0'}}> {/* workaround -- for some reason changing the props inside Improvements tag room does not trigger a table change. A new table must be created, hence the outer if statements. */}    
+                <div className={classes.table}> {/* workaround -- for some reason changing the props inside Improvements tag does not trigger a table change. A new table must be created, hence the outer if statements. */}    
                     <h1>Improvement Suggestions</h1>
                     {toggleTableRerender && <Improvements room={room} improvements= {improvements} updateImprovements={updateImprovements}/>}
                     {!toggleTableRerender && <Improvements room={room} improvements= {improvements} updateImprovements={updateImprovements}/>}    

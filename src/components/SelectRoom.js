@@ -5,9 +5,9 @@ import Select from '@material-ui/core/Select';
 import styles from '../styles/SelectRoomStyles';
 import { RoomContext } from '../contexts/RoomContext';
 
-function SelectRoom({ changeRoom, classes }) {
+function SelectRoom({ classes }) {
     //const { classes } = props;
-    const { setRoom } = useContext(RoomContext);
+    const { changeRoom } = useContext(RoomContext);
     const [values, setValues] = React.useState({
         room: 'default',
         name: 'hai',
@@ -18,7 +18,7 @@ function SelectRoom({ changeRoom, classes }) {
     return (
           <Select
             value={values.room}
-            onChange={setRoom}
+            onChange={changeRoom}
             inputProps={{
               room: 'default',
               id: 'age-simple',
@@ -31,8 +31,7 @@ function SelectRoom({ changeRoom, classes }) {
             <MenuItem value={'kitchen'}>Kitchen</MenuItem>
             <MenuItem value={'living'}>Living Room</MenuItem>
             <MenuItem value={'master'}>Master Bedroom</MenuItem>
-          </Select>
-        
+          </Select>      
     )
 }
 
