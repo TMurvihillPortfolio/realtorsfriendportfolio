@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-//#region home images
+//#region room images
 import livingImage from '../img/livingroom.jpg';
 import kitchenImage from '../img/kitchen.jpg';
 import masterImage from '../img/masterbedroom.jpg';
@@ -27,6 +27,8 @@ export function RoomProvider(props) {
             case 'master':               
                 setRoomImage(masterImage);                
                 break;
+            default:
+                //NOT YET IMPLEMENTED error code here
         }       
     }
     function changeToggleTableRerender() {

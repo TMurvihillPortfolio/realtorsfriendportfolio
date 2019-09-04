@@ -27,7 +27,7 @@ function ManageHome(props) {
         changeToggleTableRerender
     } = useContext(RoomContext);
    
-    
+
     // function changeRoom(newRoom) {
     //     setRoom(newRoom);
     //     if (newRoom==='living') setRoomImage(livingImage);
@@ -65,7 +65,14 @@ function ManageHome(props) {
         changeToggleTableRerender();
     }
     //used for debugging state
-    useEffect(() => console.log(room, toggleTableRerender));
+    useEffect(() => {
+        window.addEventListener('beforeunload', (event) => {
+            // Cancel the event as stated by the standard.
+            event.preventDefault();
+            event.returnValue = '';
+          });
+        console.log(room, toggleTableRerender)}
+        );
     return (       
             <div className={classes.root}>
                 <NavBar />
@@ -75,16 +82,16 @@ function ManageHome(props) {
                 </div>
                 <div className={classes.imageGallery}>
                     <figure>
-                        <img src={homeImage} className={classes.homeImage} alt='front of house two car garage flat roof'/>
+                        <img src={homeImage} alt='front of house two car garage flat roof'/>
                         <figcaption><Typography className={classes.caption}>1005 BLUE COAST WAY NE</Typography></figcaption>
                     </figure>
                     <figure>
-                        <img src={roomImage} className={classes.roomImage} alt={room}/>
+                        <img src={roomImage} alt={room}/>
                         <figcaption><Typography className={classes.caption}>{_FULL_ROOM_NAME[room].toUpperCase()}</Typography></figcaption>
                     </figure>                
                 </div>
                 <Typography variant='h4' className={classes.pageHeading}>{_FULL_ROOM_NAME[room].toUpperCase()}</Typography>
-                <SelectRoom className={classes.select} onChange={changeRoom}/>
+                <SelectRoom onChange={changeRoom}/>
                 <RoomComments 
                     room={room}
                     realtorComments={comments.realtorComments[room]}

@@ -69,7 +69,7 @@ const _INITIAL_IMPROVEMENTS = {
             id: uuid()
         },
         {
-            completed: false,
+            completed: true,
             improvement: 'touch up counter-top',
             cost: 600,
             estPriceAdj: 500,
@@ -87,9 +87,18 @@ const _INITIAL_IMPROVEMENTS = {
             id: uuid()
         },
         {
-            completed: false,
+            completed: true,
             improvement: 'new lighting over island',
             cost: 1400,
+            estPriceAdj: 300,
+            estTimeToSell: '0 weeks',
+            notes: '',
+            id: uuid()
+        },
+        {
+            completed: false,
+            improvement: 'new blinds in main window',
+            cost: 800,
             estPriceAdj: 300,
             estTimeToSell: '0 weeks',
             notes: '',

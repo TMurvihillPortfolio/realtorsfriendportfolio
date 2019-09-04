@@ -38,15 +38,8 @@ const styles = {
         backgroundColor: 'wheat', 
         padding: '30px 0'
     },
-    homeImage: {
-
-    },
-    roomImage: {
-    },
     caption: {
         color: '#D0C9DD'
-    },
-    select: {
     }
 }
 export default styles;
